@@ -15,6 +15,7 @@ interface Particle {
   vy: number;
   radius: number;
   glow: number;
+  pulse: number;
 }
 
 interface SymbolSprite {
@@ -76,6 +77,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private readonly onResize = (): void => {
     this.resizeCanvas();
     this.seedParticles();
+    this.seedSymbols();
   };
 
   private resizeCanvas(): void {
@@ -90,24 +92,25 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
 
   private seedParticles(): void {
-    const count = Math.max(60, Math.floor((this.width * this.height) / 17000));
+    const count = Math.max(90, Math.floor((this.width * this.height) / 12000));
     this.particles.length = 0;
 
     for (let i = 0; i < count; i++) {
       this.particles.push({
         x: Math.random() * this.width,
         y: Math.random() * this.height,
-        vx: (Math.random() - 0.5) * 0.28,
-        vy: (Math.random() - 0.5) * 0.28,
-        radius: Math.random() * 1.8 + 0.7,
-        glow: Math.random() * 0.7 + 0.3
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.55,
+        radius: Math.random() * 2 + 0.8,
+        glow: Math.random() * 0.7 + 0.3,
+        pulse: Math.random() * Math.PI * 2
       });
     }
   }
 
   private seedSymbols(): void {
     this.symbols.length = 0;
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
       this.symbols.push(this.createSymbol(Math.random() * this.width, Math.random() * this.height));
     }
   }
@@ -117,16 +120,16 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       glyph: this.symbolGlyphs[Math.floor(Math.random() * this.symbolGlyphs.length)],
       x,
       y,
-      size: Math.random() * 16 + 14,
-      opacity: Math.random() * 0.17 + 0.05,
-      speedY: Math.random() * 0.18 + 0.08,
-      drift: Math.random() * 0.5 + 0.2,
+      size: Math.random() * 20 + 16,
+      opacity: Math.random() * 0.18 + 0.08,
+      speedY: Math.random() * 0.22 + 0.1,
+      drift: Math.random() * 0.7 + 0.25,
       phase: Math.random() * Math.PI * 2
     };
   }
 
   private animate = (): void => {
-    this.time += 0.008;
+    this.time += 0.012;
     this.renderFrame();
     this.frameId = requestAnimationFrame(this.animate);
   };
@@ -137,15 +140,28 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     const baseGradient = ctx.createLinearGradient(0, 0, this.width, this.height);
     baseGradient.addColorStop(0, '#0a0f25');
-    baseGradient.addColorStop(0.55, '#121d44');
-    baseGradient.addColorStop(1, '#1a2258');
+    baseGradient.addColorStop(0.45, '#16214e');
+    baseGradient.addColorStop(1, '#1f2560');
     ctx.fillStyle = baseGradient;
     ctx.fillRect(0, 0, this.width, this.height);
 
+    this.drawAuroraGlow();
     this.drawWaves();
     this.updateParticles();
     this.drawConnections();
     this.drawSymbols();
+  }
+
+  private drawAuroraGlow(): void {
+    const ctx = this.ctx;
+    const x = this.width * (0.5 + Math.sin(this.time * 0.25) * 0.18);
+    const y = this.height * (0.42 + Math.cos(this.time * 0.2) * 0.08);
+    const glow = ctx.createRadialGradient(x, y, 20, x, y, this.width * 0.5);
+    glow.addColorStop(0, 'rgba(90, 130, 255, 0.24)');
+    glow.addColorStop(0.55, 'rgba(75, 95, 240, 0.1)');
+    glow.addColorStop(1, 'rgba(10, 15, 37, 0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, this.width, this.height);
   }
 
   private updateParticles(): void {
@@ -154,24 +170,29 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     for (const particle of this.particles) {
       particle.x += particle.vx;
       particle.y += particle.vy;
+      particle.pulse += 0.03;
 
-      if (particle.x < -10) {
-        particle.x = this.width + 10;
-      } else if (particle.x > this.width + 10) {
-        particle.x = -10;
+      if (particle.x < -14) {
+        particle.x = this.width + 14;
+      } else if (particle.x > this.width + 14) {
+        particle.x = -14;
       }
 
-      if (particle.y < -10) {
-        particle.y = this.height + 10;
-      } else if (particle.y > this.height + 10) {
-        particle.y = -10;
+      if (particle.y < -14) {
+        particle.y = this.height + 14;
+      } else if (particle.y > this.height + 14) {
+        particle.y = -14;
       }
+
+      const pulseFactor = 0.75 + Math.sin(particle.pulse) * 0.25;
+      const radius = particle.radius * pulseFactor;
+      const alpha = (0.3 + particle.glow * 0.45) * pulseFactor;
 
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(102, 229, 255, ${0.35 * particle.glow})`;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = 'rgba(102, 229, 255, 0.3)';
+      ctx.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(98, 233, 255, ${alpha})`;
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = 'rgba(98, 233, 255, 0.45)';
       ctx.fill();
     }
 
@@ -180,7 +201,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   private drawConnections(): void {
     const ctx = this.ctx;
-    const maxDistance = 120;
+    const maxDistance = 150;
 
     for (let i = 0; i < this.particles.length; i++) {
       const a = this.particles[i];
@@ -191,9 +212,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         const distance = Math.hypot(dx, dy);
 
         if (distance < maxDistance) {
-          const alpha = (1 - distance / maxDistance) * 0.22;
-          ctx.strokeStyle = `rgba(125, 152, 255, ${alpha})`;
-          ctx.lineWidth = 0.8;
+          const alpha = (1 - distance / maxDistance) * 0.34;
+          ctx.strokeStyle = `rgba(116, 149, 255, ${alpha})`;
+          ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -206,14 +227,14 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private drawWaves(): void {
     const ctx = this.ctx;
     const waveConfigs = [
-      { amp: 24, freq: 0.012, speed: 0.8, y: this.height * 0.35, alpha: 0.08 },
-      { amp: 36, freq: 0.009, speed: 0.55, y: this.height * 0.58, alpha: 0.1 },
-      { amp: 18, freq: 0.014, speed: 1.1, y: this.height * 0.75, alpha: 0.06 }
+      { amp: 28, freq: 0.013, speed: 0.9, y: this.height * 0.32, alpha: 0.11 },
+      { amp: 40, freq: 0.009, speed: 0.62, y: this.height * 0.56, alpha: 0.13 },
+      { amp: 22, freq: 0.016, speed: 1.2, y: this.height * 0.76, alpha: 0.09 }
     ];
 
     for (const wave of waveConfigs) {
       ctx.beginPath();
-      for (let x = 0; x <= this.width; x += 8) {
+      for (let x = 0; x <= this.width; x += 7) {
         const y = wave.y + Math.sin(x * wave.freq + this.time * wave.speed) * wave.amp;
         if (x === 0) {
           ctx.moveTo(x, y);
@@ -222,8 +243,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         }
       }
 
-      ctx.strokeStyle = `rgba(102, 229, 255, ${wave.alpha})`;
-      ctx.lineWidth = 1.1;
+      ctx.strokeStyle = `rgba(98, 233, 255, ${wave.alpha})`;
+      ctx.lineWidth = 1.25;
       ctx.stroke();
     }
   }
@@ -235,15 +256,15 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     for (const symbol of this.symbols) {
       symbol.y -= symbol.speedY;
-      symbol.phase += 0.012;
+      symbol.phase += 0.016;
       symbol.x += Math.sin(symbol.phase) * symbol.drift;
 
-      if (symbol.y < -32) {
-        Object.assign(symbol, this.createSymbol(Math.random() * this.width, this.height + 24));
+      if (symbol.y < -40) {
+        Object.assign(symbol, this.createSymbol(Math.random() * this.width, this.height + 30));
       }
 
       ctx.font = `${symbol.size}px Montserrat, sans-serif`;
-      ctx.fillStyle = `rgba(170, 215, 255, ${symbol.opacity})`;
+      ctx.fillStyle = `rgba(173, 222, 255, ${symbol.opacity})`;
       ctx.fillText(symbol.glyph, symbol.x, symbol.y);
     }
   }

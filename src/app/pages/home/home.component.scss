@@ -59,9 +59,9 @@
   position: absolute;
   font-family: $font-heading;
   font-size: clamp(2rem, 7vw, 4.5rem);
-  color: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.1);
   user-select: none;
-  animation: float 7s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
   z-index: 1;
 
   &.symbol-pi {
