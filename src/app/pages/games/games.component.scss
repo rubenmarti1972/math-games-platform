@@ -1,0 +1,38 @@
+@use '../../../styles/variables' as *;
+
+.games-page {
+  padding: 2.5rem 1rem 4rem;
+
+  &__header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-family: $font-heading;
+      color: $color-primary;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: rgba(26, 26, 26, 0.75);
+      max-width: 620px;
+    }
+  }
+}
+
+.games-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+}
