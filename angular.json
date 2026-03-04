@@ -10,11 +10,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/math-games-platform",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -46,7 +46,10 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "vendorChunk": true,
+              "namedChunks": true,
+              "buildOptimizer": false
             }
           },
           "defaultConfiguration": "production"
@@ -66,6 +69,7 @@
       }
     }
   },
+  "defaultProject": "math-games-platform",
   "cli": {
     "analytics": false
   }
