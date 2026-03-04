@@ -1,0 +1,12 @@
+<section class="games-page container">
+  <header class="games-page__header">
+    <h1>Games Catalog</h1>
+    <p>Discover playable experiences that merge strategy, curiosity, and mathematical thinking.</p>
+  </header>
+
+  <div class="games-grid">
+    @for (game of games; track game.id) {
+      <app-game-card [game]="game"></app-game-card>
+    }
+  </div>
+</section>
