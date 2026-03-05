@@ -1,8 +1,7 @@
 <div class="cell" (click)="cellClick.emit()">
-  <div *ngIf="state !== 'empty'" class="disc" [ngClass]="state"></div>
+  <div *ngIf="state !== 'empty'" class="disc" [ngClass]="state">
+    <span class="token-avatar" [attr.aria-label]="state === 'black' ? 'Avatar Nox' : state === 'white' ? 'Avatar Lira' : state === 'blue' ? 'Avatar Sigma' : 'Avatar'">
+      {{ state === 'black' ? '🧙' : state === 'white' ? '🧝' : state === 'blue' ? '🔮' : '✨' }}
+    </span>
+  </div>
 </div>
-
-
-
-
-
