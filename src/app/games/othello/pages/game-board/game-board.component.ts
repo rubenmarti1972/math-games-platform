@@ -14,6 +14,8 @@ import { CellComponent } from './cell/cell.component';
 })
 export class GameBoardComponent implements OnInit, OnDestroy {
   board$ = this.gameService.board$;
+  blackCount$ = this.gameService.blackCount$;
+  whiteCount$ = this.gameService.whiteCount$;
   retoId: number | null = null;
 
   winnerMessage = '';
