@@ -3,7 +3,7 @@
     <div>
       <p class="eyebrow">AVENTURA MATEMÁTICA · OTHELLO</p>
       <h1>El Encierro de la Isla Estratégica</h1>
-      <p class="subtitle">Descubre personajes, supera sus pruebas y rompe el cerco usando lógica de tablero.</p>
+      <p class="subtitle">Ahora recorres la isla con personajes-avatar. Cada avance desbloquea pistas en el board.</p>
     </div>
 
     <div class="topbar-actions">
@@ -14,10 +14,42 @@
     </div>
   </header>
 
+  <section class="adventure-board">
+    <div class="board-head">
+      <h2>Board de expedición</h2>
+      <p>
+        Zona actual: <strong>{{ currentBoardStep().label }}</strong> · {{ currentBoardStep().clue }}
+      </p>
+    </div>
+
+    <div class="path-track">
+      @for (tile of boardTiles; track tile.id) {
+        <article class="tile" [class.tile--active]="tile.id <= discoveredCount() + 1">
+          <span class="tile__id">{{ tile.id }}</span>
+          <h3>{{ tile.label }}</h3>
+          <p>{{ tile.clue }}</p>
+        </article>
+      }
+
+      @for (encounter of encounters; track encounter.id) {
+        <div
+          class="avatar"
+          [class.avatar--discovered]="isDiscovered(encounter.id)"
+          [style.left.%]="avatarPosition(encounter.id)"
+          [style.top.%]="16 + encounter.lane * 28"
+          [attr.aria-label]="encounter.name"
+        >
+          <span>{{ encounter.avatar }}</span>
+          <small>{{ encounter.name.split(',')[0] }}</small>
+        </div>
+      }
+    </div>
+  </section>
+
   @if (journalOpen()) {
     <aside class="mission-panel">
       <div class="mission-panel__head">
-        <h2>Bitácora de aventura</h2>
+        <h2>Bitácora de personajes</h2>
         <span>{{ discoveredCount() }}/{{ encounters.length }} personajes descubiertos</span>
       </div>
 
@@ -28,7 +60,7 @@
         @for (encounter of encounters; track encounter.id) {
           <li [class.done]="isDiscovered(encounter.id)">
             <div>
-              <h3>{{ encounter.name }}</h3>
+              <h3>{{ encounter.avatar }} {{ encounter.name }}</h3>
               <p>{{ encounter.role }}</p>
               <small>{{ encounter.challenge }}</small>
             </div>
