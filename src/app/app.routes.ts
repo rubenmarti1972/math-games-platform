@@ -4,10 +4,9 @@ import { GamesComponent } from './pages/games/games.component';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/hub/hub.component').then((m) => m.HubComponent)
+    loadComponent: () => import('./game-world/world3d/world3d.component').then((m) => m.World3dComponent)
   },
   { path: 'games', component: GamesComponent },
-
   {
     path: 'games/othello',
     loadChildren: () =>
@@ -23,6 +22,5 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./games/colores/colores.routes').then((m) => m.COLORES_ROUTES)
   },
-
   { path: '**', redirectTo: '' }
 ];
