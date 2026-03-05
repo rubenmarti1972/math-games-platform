@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GameService } from '../../services/game.service';
-import { CellComponent } from './cell/cell.component';
+import { Othello3dComponent } from '../../three/othello-3d.component';
 
 @Component({
   selector: 'app-game-board',
   standalone: true,
-  imports: [CommonModule, CellComponent],
+  imports: [CommonModule, Othello3dComponent],
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.css']
 })
@@ -62,9 +62,5 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.gameStateSub?.unsubscribe();
-  }
-
-  onCellClick(row: number, col: number): void {
-    this.gameService.tryMove(row, col);
   }
 }
