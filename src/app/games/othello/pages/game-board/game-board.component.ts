@@ -1,7 +1,7 @@
-// src/app/game-board/game-board.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { GameService } from '../../services/game.service';
 import { CellComponent } from './cell/cell.component';
 
@@ -15,39 +15,65 @@ import { CellComponent } from './cell/cell.component';
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.css']
 })
-export class GameBoardComponent implements OnInit {
+export class GameBoardComponent implements OnInit, OnDestroy {
   board$ = this.gameService.board$;
+  blackCount$ = this.gameService.blackCount$;
+  whiteCount$ = this.gameService.whiteCount$;
   retoId: number | null = null;
+
+  winnerMessage = '';
+  private gameStateSub?: Subscription;
 
   constructor(
     private gameService: GameService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-    const id = Number(params.get('id'));
-    this.retoId = isNaN(id) ? null : id;
+      const id = Number(params.get('id'));
+      this.retoId = isNaN(id) ? null : id;
+      this.winnerMessage = '';
 
-    switch (id) {
-      case 1: this.gameService.applyReto1(); break;
-      case 2: this.gameService.applyReto2(); break;
-      case 3: this.gameService.applyReto3(); break;
-      case 4: this.gameService.applyReto4(); break;
-      case 5: this.gameService.applyReto5(); break;
-      case 6: this.gameService.applyReto6(); break;
-      case 7: this.gameService.applyReto7(); break;
-      case 8: this.gameService.applyReto8(); break;
-      default:
-        this.gameService.reset(); // home
-    }
-  });
+      switch (id) {
+        case 1: this.gameService.applyReto1(); break;
+        case 2: this.gameService.applyReto2(); break;
+        case 3: this.gameService.applyReto3(); break;
+        case 4: this.gameService.applyReto4(); break;
+        case 5: this.gameService.applyReto5(); break;
+        case 6: this.gameService.applyReto6(); break;
+        case 7: this.gameService.applyReto7(); break;
+        case 8: this.gameService.applyReto8(); break;
+        default: this.gameService.reset();
+      }
+    });
+
+    this.gameStateSub = this.board$.subscribe((board) => {
+      const flat = board.flat();
+      const hasEmpty = flat.includes('empty');
+      if (hasEmpty || board.length === 0) {
+        return;
+      }
+
+      const black = flat.filter((cell) => cell === 'black').length;
+      const white = flat.filter((cell) => cell === 'white').length;
+
+      if (black === white) {
+        this.winnerMessage = 'Empate en la isla: Nox y Lira conquistaron el mismo número de territorios.';
+      } else {
+        this.winnerMessage = black > white
+          ? 'Nox gana: conquistó más recuadros de la isla.'
+          : 'Lira gana: conquistó más recuadros de la isla.';
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.gameStateSub?.unsubscribe();
   }
 
   onCellClick(row: number, col: number) {
     this.gameService.tryMove(row, col);
   }
-
-
 }

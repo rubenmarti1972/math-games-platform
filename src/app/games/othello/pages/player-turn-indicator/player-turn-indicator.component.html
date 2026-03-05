@@ -1,3 +1,6 @@
 <div class="turn-indicator" *ngIf="currentPlayer$ | async as p">
-  Turno: <span [ngClass]="p">{{ p === 'black' ? 'Rojo' : 'Verde' }}</span>
+  Turno:
+  <span class="turn-chip" [ngClass]="p" [attr.aria-label]="p === 'black' ? 'Avatar Nox' : 'Avatar Lira'">
+    {{ p === 'black' ? '🧙' : '🧝' }}
+  </span>
 </div>
