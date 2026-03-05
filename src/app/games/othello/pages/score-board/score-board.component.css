@@ -1,11 +1,9 @@
-/* src/app/pages/score-board/score-board.component.css */
-/* src/app/pages/score-board/score-board.component.css */
-
 .scoreboard {
-  background: #f0f0f0;
+  background: linear-gradient(135deg, #0f172a, #111827);
+  border: 1px solid rgba(51, 65, 85, 0.7);
   padding: 0.75rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.35);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -15,36 +13,29 @@
 .score-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
-.disc {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  /*border: 1px solid #666;*/
-  flex-shrink: 0;
+.token-chip {
+  width: 1.65rem;
+  height: 1.65rem;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(226, 232, 240, 0.35);
 }
 
-.disc.red {
-  background-color: red;
+.token-chip--nox {
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
 }
 
-.disc.green {
-  background-color: #0a0;
-}
-
-.label {
-  font-weight: 600;
-  flex-grow: 1;
-  text-transform: uppercase;
-  color: #333;
+.token-chip--lira {
+  background: linear-gradient(135deg, #166534, #14532d);
 }
 
 .count {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #111;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #e5e7eb;
 }
-

@@ -1,82 +1,39 @@
-/* Contenedor centrado */
-:host {
-  --cell-size: 50px;     /* aquí pones el ancho/alto que quieras */
-}
-.board-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-  background: -webkit-linear-gradient(90deg, #9eb8d1, #c2ccd1, #d0d0e2);
-  background: linear-gradient(90deg, #abc9e7, #c2ccd1, #d0d0e2);
+:host { display: block; }
+
+.winner-banner {
+  margin: 0 0 0.7rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #e5e7eb;
+  border: 1px solid #334155;
+  font-weight: 700;
 }
 
-
-.board {
+.terrain-wrapper {
+  min-height: 64vh;
   display: grid;
-  /* dinámico: columnas y filas según el tablero */
-  grid-template-columns:
-    var(--cell-size)                              /* columna de etiquetas */
-    repeat(var(--board-cols), var(--cell-size));  /* columnas reales */
-  grid-template-rows:
-    var(--cell-size)                              /* fila de etiquetas */
-    repeat(var(--board-rows), var(--cell-size));  /* filas reales */
-  border-radius: 8px;
+  place-items: center;
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(6, 182, 212, 0.16), transparent 40%),
+    radial-gradient(circle at 82% 78%, rgba(59, 130, 246, 0.14), transparent 38%),
+    #0b1220;
+  padding: 1rem;
 }
 
-/* Estilo común para cualquier celda (incluye headers) */
-.cell {
-  box-sizing: border-box;
-  width: 49px;
-  height: 49px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid white;
-  background-color: #f5f8f5;
-  position: relative;
+.terrain-board { position: relative; }
+
+.terrain-tile {
+  position: absolute;
+  clip-path: polygon(9% 8%, 92% 5%, 96% 35%, 90% 92%, 28% 95%, 6% 72%, 4% 28%);
+  border: 1px solid rgba(71, 85, 105, 0.65);
+  background: linear-gradient(145deg, #1f2937, #0f172a);
+  box-shadow: 0 7px 14px rgba(2, 6, 23, 0.35);
 }
 
-/* Cabeceras estadas en gris claro */
-.header {
-  background-color: white;
-  color:black;
-  font-weight: bold;
-  z-index: 2;
-  position: sticky;
-  border: none;
-  /* fija cuando haces scroll */
-}
+.terrain-tile app-variant2-cell { width: 100%; height: 100%; display: block; }
+.terrain-tile app-variant2-cell ::ng-deep .cell { width: 100%; height: 100%; }
 
-/* Esquina superior-izquierda */
-.empty {
-  background-color:white;
-  border-right: none;
-  border-bottom: none;
-  border: none;
-  z-index: 3;
-}
-
-/* Letras de columnas: fija en top */
-.col-label {
-  top: 0;
- /*border: 1px solid white;*/
-}
-
-/* Números de filas: fija en left */
-.row-label {
-  left: 0;
-  /*border: 1px solid white;*/
-}
-
-/* Ajusta dimensiones */
-.board .cell {
-  width: 50px;
-  height: 50px;
-}
-
-/* Colores de fichas: verde y rojo */
-.cell .disc.black {
-  background-color: #0a0;
-}
+.terrain-tile.territory-nox { background: linear-gradient(145deg, rgba(185, 28, 28, 0.5), rgba(127, 29, 29, 0.35)); }
+.terrain-tile.territory-lira { background: linear-gradient(145deg, rgba(22, 101, 52, 0.5), rgba(20, 83, 45, 0.35)); }

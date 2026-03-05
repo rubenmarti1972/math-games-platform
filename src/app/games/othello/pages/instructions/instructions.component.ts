@@ -10,13 +10,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InstructionsComponent {
-  hideInstructions: boolean = false;
+  hideInstructions: boolean = true;
   currentPage = 0;
   instructionsOne: string[] = [
-    'Juego para dos personas.',
-    'El juego inicia con 2 fichas verdes y 2 fichas rojas en un tablero cuadrado.',
+    'Aventura para dos estrategas: Nox (avatar de fuego) vs Lira (avatar de bosque).',
+    'La partida inicia con 2 avatares de cada bando en el centro del territorio.',
     'Por turno, cada jugador puede realizar un movimiento.',
-    'Los movimientos permitidos consisten en agregar una ficha de tal manera que encierre una fila continua de una o más fichas del color contrario. Al hacer esto las fichas que encerró se convierten en fichas de su color. '
+    'En cada turno colocas un avatar para encerrar una fila continua de avatares rivales. Los encerrados se convierten a tu bando.'
   ];
 
    instructionsTwo: string[] = [
@@ -24,7 +24,7 @@ export class InstructionsComponent {
     'El movimiento se puede realizar de forma horizontal, vertical o diagonal. ',
     'Si un jugador no puede realizar algún movimiento en su turno, deberá pasar el turno.',
     'El juego termina cuando no se puedan realizar más movimientos. ',
-    'Gana el jugador que tenga más fichas de su color. ',
+    'Gana quien termine con más territorios conquistados por su avatar (Nox o Lira). ',
 
   ];
 
