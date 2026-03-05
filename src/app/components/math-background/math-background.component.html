@@ -1,0 +1,14 @@
+<div class="math-background" aria-hidden="true">
+  @for (symbol of symbols; track $index) {
+    <span
+      class="symbol"
+      [style.top]="symbol.top"
+      [style.left]="symbol.left"
+      [style.--duration]="symbol.duration"
+      [style.--delay]="symbol.delay"
+      [style.fontSize]="symbol.size"
+    >
+      {{ symbol.value }}
+    </span>
+  }
+</div>
