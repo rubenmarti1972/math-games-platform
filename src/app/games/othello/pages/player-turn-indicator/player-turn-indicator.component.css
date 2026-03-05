@@ -1,21 +1,26 @@
 .turn-indicator {
   margin-bottom: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  color: #cbd5e1;
 }
 
 .turn-chip {
-  display: inline-block;
-  margin-left: 0.3rem;
-  padding: 0.15rem 0.45rem;
-  border-radius: 6px;
+  display: inline-grid;
+  place-items: center;
+  margin-left: 0.35rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 8px;
   color: #f8fafc;
-  font-weight: 700;
+  font-size: 0.95rem;
+  border: 1px solid rgba(226, 232, 240, 0.35);
+  box-shadow: 0 3px 10px rgba(2, 6, 23, 0.35);
 }
 
 .turn-chip.black {
-  background: linear-gradient(135deg, #dc2626, #7f1d1d);
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
 }
 
 .turn-chip.white {
-  background: linear-gradient(135deg, #16a34a, #166534);
+  background: linear-gradient(135deg, #166534, #14532d);
 }

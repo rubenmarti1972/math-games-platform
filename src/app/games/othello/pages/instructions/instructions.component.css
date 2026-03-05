@@ -3,19 +3,20 @@
 }
 
 .show-instructions {
-  background-color: #2980b9;
-  color: white;
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  color: #f8fafc;
   padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 1em;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
   margin: 20px auto;
   display: block;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: 1px solid rgba(191, 219, 254, 0.45);
 }
 
 .show-instructions:hover {
-  background-color: #1abc9c;
+  filter: brightness(1.07);
 }
 
 .modal {
@@ -23,23 +24,23 @@
   position: fixed;
   z-index: 100;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(3px);
 }
 
 .modal-content {
-  background-color: #ffffff;
-  opacity: 1;
+  background: #f8fafc;
   margin: 6% auto;
   padding: 24px;
-  border: 1px solid #888;
+  border: 1px solid #94a3b8;
   width: min(820px, 92vw);
-  border-radius: 12px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-  color: #111827;
+  border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(2, 6, 23, 0.35);
+  color: #0f172a;
 }
 
 .close {
-  color: #6b7280;
+  color: #64748b;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -47,7 +48,7 @@
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: #0f172a;
   text-decoration: none;
   cursor: pointer;
 }
@@ -58,32 +59,28 @@
 }
 
 button {
-  background: #5e5df0;
+  background: #4f46e5;
   border-radius: 999px;
-  box-shadow: #5e5df0 0 10px 20px -10px;
-  box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
   font-family: Inter, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 24px;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border: 0;
-  margin: 0 10px;
+  margin: 0 8px;
 }
 
 button:hover {
-  background: #2121df;
-  color: white;
+  background: #3730a3;
 }
 
 .btn-secondary {
-  background-color: #e0e0e0;
-  color: #333;
+  background-color: #e2e8f0;
+  color: #0f172a;
 }
 
 .btn-primary {
-  background-color: #5e5df0;
+  background-color: #4f46e5;
   color: white;
 }

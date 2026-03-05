@@ -1,8 +1,9 @@
 .scoreboard {
-  background: #f0f0f0;
+  background: linear-gradient(135deg, #0f172a, #111827);
+  border: 1px solid rgba(51, 65, 85, 0.7);
   padding: 0.75rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.35);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -12,35 +13,29 @@
 .score-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
 .token-chip {
-  padding: 0.2rem 0.35rem;
-  border-radius: 6px;
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 0.03em;
+  width: 1.65rem;
+  height: 1.65rem;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(226, 232, 240, 0.35);
 }
 
 .token-chip--nox {
-  background: linear-gradient(135deg, #dc2626, #7f1d1d);
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
 }
 
 .token-chip--lira {
-  background: linear-gradient(135deg, #16a34a, #166534);
-}
-
-.label {
-  font-weight: 600;
-  flex-grow: 1;
-  text-transform: uppercase;
-  color: #333;
+  background: linear-gradient(135deg, #166534, #14532d);
 }
 
 .count {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #111;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #e5e7eb;
 }

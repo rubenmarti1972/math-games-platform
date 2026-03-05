@@ -17,7 +17,7 @@
   right: 4px;
   bottom: 4px;
   border-radius: 8px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(226, 232, 240, 0.45);
   display: grid;
   place-items: center;
 }
@@ -28,11 +28,11 @@
 }
 
 .disc.black {
-  background: linear-gradient(135deg, #dc2626, #7f1d1d);
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
 }
 
 .disc.white {
-  background: linear-gradient(135deg, #16a34a, #166534);
+  background: linear-gradient(135deg, #166534, #14532d);
 }
 
 .disc.dual {
