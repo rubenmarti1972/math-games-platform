@@ -9,8 +9,15 @@ export const routes: Routes = [
   { path: 'games', component: GamesComponent },
   {
     path: 'games/othello',
-    loadChildren: () =>
-      import('./games/othello/othello.routes').then((m) => m.OTHELLO_ROUTES)
+    loadComponent: () =>
+      import('./game-world/othello-adventure/othello-adventure.component').then((m) => m.OthelloAdventureComponent),
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./games/othello/othello.routes').then((m) => m.OTHELLO_ROUTES)
+      }
+    ]
   },
   {
     path: 'games/panda4x4',
