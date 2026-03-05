@@ -1,14 +1,7 @@
-<!-- src/app/cell/cell.component.html -->
 <div class="cell" (click)="onClick()">
-  <!-- Sólo mostramos el disco si no está vacía -->
-  <div
-    *ngIf="state !== 'empty'"
-    class="disc"
-    [ngClass]="state">
+  <div *ngIf="state !== 'empty'" class="disc" [ngClass]="state">
+    <span class="token-avatar" [attr.aria-label]="state === 'black' ? 'Avatar Nox' : 'Avatar Lira'">
+      {{ state === 'black' ? '🧙' : '🧝' }}
+    </span>
   </div>
 </div>
-
-
-
-
-

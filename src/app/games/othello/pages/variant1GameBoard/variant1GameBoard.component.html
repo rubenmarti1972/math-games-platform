@@ -1,26 +1,26 @@
-<div class="board-wrapper">
+@if (winnerMessage) {
+  <p class="winner-banner">{{ winnerMessage }}</p>
+}
+
+<div class="board-wrapper island-mode" *ngIf="board$ | async as board">
   <div
-    class="board"
-    *ngIf="board$ | async as board"
+    class="board island-mode"
     [style.--board-rows]="board.length"
     [style.--board-cols]="board[0].length"
   >
-    <!-- Esquina vacía -->
     <div class="cell header empty"></div>
 
-    <!-- Cabecera de columnas -->
     <ng-container *ngFor="let _ of board[0]; let col = index">
-      <div class="cell header col-label">
-        {{ ('ABCDEFGHIJKLMNOPQRSTUVWXYZ')[col] }}
-      </div>
+      <div class="cell header col-label">{{ ('ABCDEFGHIJKLMNOPQRSTUVWXYZ')[col] }}</div>
     </ng-container>
 
-    <!-- Filas -->
     <ng-container *ngFor="let row of board; let i = index">
       <div class="cell header row-label">{{ i + 1 }}</div>
       <ng-container *ngFor="let cell of row; let j = index">
         <app-variant1-cell
-        class="cell"
+          class="cell"
+          [class.territory-nox]="cell === 'black'"
+          [class.territory-lira]="cell === 'white'"
           [state]="cell"
           (cellClick)="onCellClick(i, j)">
         </app-variant1-cell>
@@ -28,6 +28,3 @@
     </ng-container>
   </div>
 </div>
-
-
-
