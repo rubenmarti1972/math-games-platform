@@ -1,0 +1,13 @@
+<!-- src/app/pages/score-board/score-board.component.html -->
+<div class="scoreboard">
+  <div class="score-item">
+    <span class="disc red"></span>
+    <span class="label">Rojo</span>
+    <span class="count">{{ blackCount$ | async }}</span>
+  </div>
+  <div class="score-item">
+    <span class="disc green"></span>
+    <span class="label">Verde</span>
+    <span class="count">{{ whiteCount$ | async }}</span>
+  </div>
+</div>

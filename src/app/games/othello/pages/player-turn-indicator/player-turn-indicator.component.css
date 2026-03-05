@@ -1,0 +1,13 @@
+.turn-indicator {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.turn-indicator .black {
+  color: red
+}
+
+.turn-indicator .white {
+  color: green;
+  text-shadow: 0 0 2px green;
+}

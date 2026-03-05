@@ -1,0 +1,9 @@
+<div class="move-history" *ngIf="moves$ | async as moves">
+  <h3>Historial</h3>
+  <ul>
+    <li *ngFor="let m of moves; let idx = index">
+      {{ idx + 1 }}. {{ m.player === 'black' ? 'Rojo' : 'Verde' }}
+      ({{ m.row }}, {{ m.col }})
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,7 @@
+<div class="settings-panel">
+  <label for="size">Tamaño tablero:</label>
+  <select id="size" [(ngModel)]="selectedSize">
+    <option *ngFor="let s of boardSizes" [value]="s">{{ s }}×{{ s }}</option>
+  </select>
+  <button (click)="apply()">Aplicar</button>
+</div>

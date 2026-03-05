@@ -1,0 +1,8 @@
+<h2>Jugar en línea</h2>
+
+<button (click)="createGame()">Crear partida</button>
+
+<div>
+  <input type="text" placeholder="Código de la partida" [(ngModel)]="gameId" />
+  <button (click)="joinGame()">Unirse</button>
+</div>

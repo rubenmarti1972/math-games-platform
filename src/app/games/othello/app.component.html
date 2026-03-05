@@ -1,0 +1,50 @@
+<div class="app-container">
+  <header class="app-header">
+    <img src="assets/othello/images/logo.png" alt="Logo" class="logo" />
+    <h1 class="title">{{ title }}</h1>
+    <div class="spacer"></div>
+  </header>
+
+  <main class="app-main">
+    <div class="game-area">
+      <div class="side-panel">
+        <!-- 👇 Este mode-selector es lo que vamos a estilizar -->
+        <div class="mode-selector">
+          <label [class.active]="mode === 'pvp'" title="Jugador 1 vs Jugador 2">
+
+            <input type="radio" name="mode" (change)="setMode('pvp')" [checked]="mode === 'pvp'" />
+            <i class="fas fa-user" style="color: red;"></i>
+            <i class="fas fa-user" style="color: green;"></i>
+            <span>Jugador vs Jugador</span>
+          </label>
+
+          <label [class.active]="mode === 'cpu'" title="Jugador 1 vs Jugador 2">
+            <input type="radio" name="mode" (change)="setMode('cpu')" [checked]="mode === 'cpu'" />
+            <i class="fas fa-user" style="color: red;"></i>
+            <i class="fas fa-desktop" style="color: green;"></i>
+            <span>Jugador vs PC</span>
+          </label>
+        </div>
+
+        <app-controls-panel></app-controls-panel>
+        <app-player-turn-indicator></app-player-turn-indicator>
+        <app-score-board></app-score-board>
+        <app-instructions></app-instructions>
+      </div>
+      <div class="board-panel">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+   <!--  <app-move-history></app-move-history> -->
+   <!--  <app-settings></app-settings> -->
+  </main>
+
+  <footer class="app-footer">
+    <small>&copy; {{ currentYear }} - Juego Encerrando colores - Fundapromat - </small>
+    <a href="https://docs.google.com/presentation/d/1a893t9SWsrmtRKGFjBaqJ9d5xkxk98TVUans4RmArsQ/edit?slide=id.gf1190ce234_0_0#slide=id.gf1190ce234_0_0" target="_blank">
+    Ver presentación
+    </a>
+
+  </footer>
+</div>

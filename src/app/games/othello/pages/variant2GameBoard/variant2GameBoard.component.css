@@ -1,0 +1,82 @@
+/* Contenedor centrado */
+:host {
+  --cell-size: 50px;     /* aquí pones el ancho/alto que quieras */
+}
+.board-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  background: -webkit-linear-gradient(90deg, #9eb8d1, #c2ccd1, #d0d0e2);
+  background: linear-gradient(90deg, #abc9e7, #c2ccd1, #d0d0e2);
+}
+
+
+.board {
+  display: grid;
+  /* dinámico: columnas y filas según el tablero */
+  grid-template-columns:
+    var(--cell-size)                              /* columna de etiquetas */
+    repeat(var(--board-cols), var(--cell-size));  /* columnas reales */
+  grid-template-rows:
+    var(--cell-size)                              /* fila de etiquetas */
+    repeat(var(--board-rows), var(--cell-size));  /* filas reales */
+  border-radius: 8px;
+}
+
+/* Estilo común para cualquier celda (incluye headers) */
+.cell {
+  box-sizing: border-box;
+  width: 49px;
+  height: 49px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  background-color: #f5f8f5;
+  position: relative;
+}
+
+/* Cabeceras estadas en gris claro */
+.header {
+  background-color: white;
+  color:black;
+  font-weight: bold;
+  z-index: 2;
+  position: sticky;
+  border: none;
+  /* fija cuando haces scroll */
+}
+
+/* Esquina superior-izquierda */
+.empty {
+  background-color:white;
+  border-right: none;
+  border-bottom: none;
+  border: none;
+  z-index: 3;
+}
+
+/* Letras de columnas: fija en top */
+.col-label {
+  top: 0;
+ /*border: 1px solid white;*/
+}
+
+/* Números de filas: fija en left */
+.row-label {
+  left: 0;
+  /*border: 1px solid white;*/
+}
+
+/* Ajusta dimensiones */
+.board .cell {
+  width: 50px;
+  height: 50px;
+}
+
+/* Colores de fichas: verde y rojo */
+.cell .disc.black {
+  background-color: #0a0;
+}

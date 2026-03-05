@@ -1,0 +1,31 @@
+<!-- Botón para abrir el modal -->
+<button class="show-instructions" (click)="toggleInstructions()">Mostrar Instrucciones</button>
+
+<!-- Modal -->
+<div *ngIf="!hideInstructions" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="toggleInstructions()">&times;</span>
+    <h2>Instrucciones del Juego</h2>
+
+    <!-- Mostrar las instrucciones basadas en la página actual -->
+    <div *ngIf="currentPage === 0">
+      <ul>
+        <li *ngFor="let instruction of instructionsOne">{{ instruction }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="currentPage === 1">
+      <ul>
+        <li *ngFor="let instruction of instructionsTwo">{{ instruction }}</li>
+      </ul>
+      <h2>¿Algún jugador tiene una estrategia ganadora?</h2>
+    </div>
+
+    <!-- Botones de navegación -->
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 0">Anterior</button>
+      <button class="btn btn-primary" (click)="nextPage()" [disabled]="currentPage === 1">Siguiente</button>
+      <button class="btn btn-secondary" (click)="toggleInstructions()">Cerrar</button>
+    </div>
+  </div>
+</div>

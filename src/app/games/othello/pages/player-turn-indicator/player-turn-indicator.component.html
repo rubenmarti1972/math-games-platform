@@ -1,0 +1,3 @@
+<div class="turn-indicator" *ngIf="currentPlayer$ | async as p">
+  Turno: <span [ngClass]="p">{{ p === 'black' ? 'Rojo' : 'Verde' }}</span>
+</div>

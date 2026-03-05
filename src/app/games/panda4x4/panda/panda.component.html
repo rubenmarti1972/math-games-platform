@@ -1,0 +1,143 @@
+
+
+<header class="slide-header">
+  <img src="/assets/logo-circulos.png"
+     alt="Circulos Logo"
+     class="logo">
+
+
+  <div class="titles">
+    <h1 class="main-title">CÍRCULOS DE APRENDIZAJE</h1>
+    <h2 class="game-title">🐼 Quadrat Panda</h2>
+  </div>
+</header>
+
+<section class="example-section">
+  <div class="example-card">
+    <p class="example-text">
+      Coloca las 16 piezas de modo que los colores de los lados que se tocan coincidan.
+    </p>
+
+    <div class="example-visual">
+
+      <!-- INCORRECTO: el borde de contacto NO coincide -->
+      <div class="example-block">
+        <div class="mark wrong">✖</div>
+
+        <div class="pair">
+          <!-- pieza izquierda -->
+          <div class="example-piece">
+            <div class="er">
+              <div class="ec black"></div>
+              <div class="ec white"></div>
+            </div>
+            <div class="er">
+              <div class="ec black"></div>
+              <div class="ec black"></div>
+            </div>
+          </div>
+
+          <!-- pieza derecha (contacto con columna izquierda NO coincide) -->
+          <div class="example-piece">
+            <div class="er">
+              <div class="ec white"></div>
+              <div class="ec black"></div>
+            </div>
+            <div class="er">
+              <div class="ec white"></div>
+              <div class="ec black"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CORRECTO: el borde de contacto coincide -->
+      <div class="example-block">
+        <div class="mark ok">✔</div>
+
+        <div class="pair">
+          <!-- pieza izquierda -->
+          <div class="example-piece">
+            <div class="er">
+              <div class="ec black"></div>
+              <div class="ec white"></div>
+            </div>
+            <div class="er">
+              <div class="ec black"></div>
+              <div class="ec black"></div>
+            </div>
+          </div>
+
+          <!-- pieza derecha (contacto con columna izquierda SÍ coincide) -->
+          <div class="example-piece">
+            <div class="er">
+              <div class="ec white"></div>
+              <div class="ec black"></div>
+            </div>
+            <div class="er">
+              <div class="ec black"></div>
+              <div class="ec black"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section class="controls">
+  <div>⏱ {{ seconds }} s</div>
+  <button (click)="restart()">Reiniciar</button>
+</section>
+
+<div class="game-container">
+
+  <!-- BANDEJA -->
+  <div class="tray">
+    <div *ngFor="let piece of game.pieces"
+         class="piece"
+         (click)="selectPiece(piece)">
+
+      <div class="mini-row" *ngFor="let row of piece.matrix">
+        <div *ngFor="let cell of row"
+             class="mini-cell"
+             [ngClass]="cell"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TABLERO -->
+  <div class="board">
+
+    <ng-container *ngFor="let row of game.board; let r = index">
+      <ng-container *ngFor="let cell of row; let c = index">
+
+        <div class="board-cell"
+             (click)="placeSelected(r, c)">
+
+          <div *ngIf="cell.piece"
+               class="piece"
+               (click)="selectFromBoard($event, r, c)">
+
+            <div class="mini-row" *ngFor="let row of cell.piece.matrix">
+              <div *ngFor="let cell of row"
+                   class="mini-cell"
+                   [ngClass]="cell"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </ng-container>
+    </ng-container>
+
+  </div>
+
+</div>
+
+<p class="success" *ngIf="message">{{ message }}</p>

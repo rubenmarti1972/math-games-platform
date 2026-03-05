@@ -1,0 +1,225 @@
+:host {
+  display: block;
+  background: linear-gradient(135deg,#366abd,#9fadcd);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* ================= HEADER ================= */
+
+.slide-header {
+  background: linear-gradient(135deg, #4facfe 0%, #00c6ff 100%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 14px;
+  margin-bottom: 30px;
+}
+
+.logo {
+  height: 70px;
+}
+
+.titles {
+  text-align: center;
+}
+
+.header-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.game-title {
+  margin: 5px 0 0;
+  font-weight: 500;
+}
+
+/* ================= EJEMPLO SUPERIOR ================= */
+
+.example-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.example-card {
+  width: min(760px, 95vw);
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+}
+
+.example-text {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.example-visual {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.pair {
+  display: flex;
+  gap: 16px;
+}
+
+.example-piece {
+  width: 70px;
+  height: 70px;
+  border: 2px solid #0f172a;
+  display: flex;
+  flex-direction: column;
+}
+
+.er { flex: 1; display: flex; }
+.ec { flex: 1; }
+
+.mark {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.mark.wrong { color: #ef4444; }
+.mark.ok { color: #22c55e; }
+
+/* ================= CONTROLES ================= */
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #38bdf8;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #0ea5e9;
+}
+
+/* ================= LAYOUT GENERAL ================= */
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* ================= BANDEJA ================= */
+
+.tray {
+  display: grid;
+  grid-template-columns: repeat(4, 120px);
+  gap: 20px;
+  justify-content: center;
+}
+
+/* ================= TABLERO ================= */
+
+.board {
+  display: grid;
+  width: 600px;
+  max-width: 92vw;
+  aspect-ratio: 1 / 1;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  background: linear-gradient(145deg, #d9f2ff, #9ad9ff);
+  border-radius: 14px;
+  border: 4px solid white;
+  padding: 8px;
+  margin: 0 auto;
+}
+
+.board-cell {
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= PIEZAS ================= */
+
+.piece {
+  width: 85%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  cursor: grab;
+}
+
+.mini-row {
+  display: flex;
+  flex: 1;
+}
+
+.mini-cell {
+  flex: 1;
+}
+
+.black { background: black; }
+.white { background: white; }
+
+/* ================= MENSAJE ================= */
+
+.success {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+/* ================= RESPONSIVE REAL ================= */
+
+@media (max-width: 768px) {
+
+  :host {
+    padding: 25px 12px;
+  }
+
+  .header-title {
+    font-size: 1.6rem;
+  }
+
+  .slide-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tray {
+    grid-template-columns: repeat(4, 70px);
+    gap: 12px;
+  }
+
+  .board {
+    width: 95vw;
+  }
+
+  .example-piece {
+    width: 55px;
+    height: 55px;
+  }
+
+}

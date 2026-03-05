@@ -1,0 +1,22 @@
+/* src/app/pages/settings/settings.component.css */
+.settings-panel {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.settings-panel select {
+  padding: 0.25rem;
+}
+.settings-panel button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  background: #444;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.settings-panel button:hover {
+  background: #555;
+}
+

@@ -1,0 +1,14 @@
+<!-- src/app/cell/cell.component.html -->
+<div class="cell" (click)="onClick()">
+  <!-- Sólo mostramos el disco si no está vacía -->
+  <div
+    *ngIf="state !== 'empty'"
+    class="disc"
+    [ngClass]="state">
+  </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,46 @@
+@use '../../../../styles/variables' as *;
+
+.game-card {
+  background: $color-white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 20px rgba(15, 42, 68, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 12px 26px rgba(15, 42, 68, 0.18);
+  }
+
+  h3 {
+    margin: 0;
+    color: $color-primary;
+    font-family: $font-heading;
+  }
+
+  p {
+    color: rgba(26, 26, 26, 0.85);
+    line-height: 1.45;
+  }
+}
+
+.play-btn {
+  align-self: flex-start;
+  background: $color-accent;
+  color: $color-white;
+  text-decoration: none;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+
+  &:hover {
+    background: $color-accent-hover;
+    transform: translateY(-1px);
+    box-shadow: 0 0 16px rgba(255, 159, 28, 0.5);
+  }
+}

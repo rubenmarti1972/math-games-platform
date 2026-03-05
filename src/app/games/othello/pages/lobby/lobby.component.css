@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}

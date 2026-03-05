@@ -1,0 +1,38 @@
+<div class="board-wrapper">
+  <div
+    class="board"
+    *ngIf="board$ | async as board"
+    [style.--board-rows]="board.length"
+    [style.--board-cols]="board[0].length"
+  >
+
+    <!-- Esquina vacía -->
+    <div class="cell header empty"></div>
+
+    <!-- Cabecera de columnas -->
+    <ng-container *ngFor="let _ of board[0]; let col = index">
+      <div class="cell header col-label">
+        {{ ('ABCDEFGHIJKLMNOPQRSTUVWXYZ')[col] }}
+      </div>
+    </ng-container>
+
+    <!-- Filas -->
+    <ng-container *ngFor="let row of board; let i = index">
+      <div class="cell header row-label">{{ i + 1 }}</div>
+      <ng-container *ngFor="let cell of row; let j = index">
+        <app-cell
+          class="cell"
+          [state]="cell"
+          (cellClick)="onCellClick(i, j)"
+           [ngClass]="{
+    'highlight':  (retoId === 4|| retoId ===8) && (i === 2 || i === 3 || j === 2 || j === 3)
+  }"
+        ></app-cell>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+
+
+

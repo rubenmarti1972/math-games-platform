@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.cell {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.disc {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border-radius: 50%;
+}
+
+.disc.black {
+  background-color: red;
+}
+
+.disc.white {
+  background-color: green;
+}
+
+.disc.dual {
+  background: linear-gradient(to right, red 50%, green 50%);
+  border-color: #aaa;
+}
+
+
