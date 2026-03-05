@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Router } from '@angular/router';
-import { GameDefinition } from '../../games/games.registry';
+import { DIFFICULTY_LABELS_ES, GameDefinition } from '../../games/games.registry';
 
 @Component({
   selector: 'app-game-card',
@@ -17,5 +17,9 @@ export class GameCardComponent {
   playGame(): void {
     const selectedGame = this.game();
     this.router.navigate([selectedGame.route]);
+  }
+
+  getDifficultyLabel(): string {
+    return DIFFICULTY_LABELS_ES[this.game().difficulty];
   }
 }

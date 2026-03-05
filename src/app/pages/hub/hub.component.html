@@ -2,42 +2,42 @@
   <app-math-background></app-math-background>
 
   <header class="hub-header glass-panel">
-    <p class="eyebrow">MATH GAMES PLATFORM</p>
-    <h1>Learn mathematics through games</h1>
+    <p class="eyebrow">PLATAFORMA DE JUEGOS MATEMÁTICOS</p>
+    <h1>Aprende matemáticas jugando</h1>
     <p class="subtitle">
-      Explore strategic puzzles, logic boards, and creative challenges designed to sharpen your math skills.
+      Explora retos de estrategia, lógica y creatividad diseñados para fortalecer tus habilidades matemáticas.
     </p>
 
     <div class="controls">
       <label>
-        <span>Search games</span>
+        <span>Buscar juegos</span>
         <input
           type="search"
           [value]="searchText()"
           (input)="updateSearch($any($event.target).value)"
-          placeholder="Find by title or description"
+          placeholder="Busca por título o descripción"
         />
       </label>
 
       <label>
-        <span>Difficulty</span>
+        <span>Dificultad</span>
         <select [value]="difficultyFilter()" (change)="updateDifficulty($any($event.target).value)">
-          <option value="all">All levels</option>
+          <option value="all">Todos los niveles</option>
           @for (difficulty of difficultyOptions(); track difficulty) {
-            <option [value]="difficulty">{{ difficulty }}</option>
+            <option [value]="difficulty">{{ getDifficultyLabel(difficulty) }}</option>
           }
         </select>
       </label>
     </div>
   </header>
 
-  <section class="games-grid" aria-label="Game catalog">
+  <section class="games-grid" aria-label="Catálogo de juegos">
     @for (game of filteredGames(); track game.id) {
       <app-game-card [game]="game"></app-game-card>
     } @empty {
       <article class="empty-state glass-panel">
-        <h2>No games found</h2>
-        <p>Try a different search term or choose another difficulty filter.</p>
+        <h2>No se encontraron juegos</h2>
+        <p>Prueba otro texto de búsqueda o cambia el filtro de dificultad.</p>
       </article>
     }
   </section>

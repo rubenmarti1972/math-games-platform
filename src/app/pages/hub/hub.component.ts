@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { GameCardComponent } from '../../components/game-card/game-card.component';
 import { MathBackgroundComponent } from '../../components/math-background/math-background.component';
-import { GAMES, GameDefinition, GameDifficulty } from '../../games/games.registry';
+import { DIFFICULTY_LABELS_ES, GAMES, GameDefinition, GameDifficulty } from '../../games/games.registry';
 
 @Component({
   selector: 'app-hub',
@@ -43,5 +43,9 @@ export class HubComponent {
 
   updateDifficulty(value: string): void {
     this.difficultyFilter.set(value === 'all' ? 'all' : (value as GameDifficulty));
+  }
+
+  getDifficultyLabel(difficulty: GameDifficulty): string {
+    return DIFFICULTY_LABELS_ES[difficulty];
   }
 }

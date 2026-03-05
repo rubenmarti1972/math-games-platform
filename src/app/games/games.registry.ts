@@ -9,11 +9,18 @@ export interface GameDefinition {
   icon: string;
 }
 
+export const DIFFICULTY_LABELS_ES: Record<GameDifficulty, string> = {
+  easy: 'Fácil',
+  medium: 'Media',
+  hard: 'Difícil',
+  'multi-level': 'Multinivel'
+};
+
 export const GAMES: readonly GameDefinition[] = [
   {
     id: 'othello',
     title: 'Othello',
-    description: 'Strategic board game with levels',
+    description: 'Juego de estrategia por turnos con niveles',
     route: '/games/othello',
     difficulty: 'medium',
     icon: '♟️'
@@ -21,15 +28,15 @@ export const GAMES: readonly GameDefinition[] = [
   {
     id: 'panda4x4',
     title: 'Panda 4x4',
-    description: 'Logic puzzle challenge',
+    description: 'Desafío de lógica y resolución de patrones',
     route: '/games/panda4x4',
     difficulty: 'easy',
     icon: '🐼'
   },
   {
     id: 'colores',
-    title: 'Color Lab',
-    description: 'Color mixing math challenge',
+    title: 'Laboratorio de Colores',
+    description: 'Reto matemático de mezclas y combinaciones de color',
     route: '/games/colores',
     difficulty: 'multi-level',
     icon: '🎨'
