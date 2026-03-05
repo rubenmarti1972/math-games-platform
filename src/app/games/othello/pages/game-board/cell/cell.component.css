@@ -23,12 +23,9 @@
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
-.token-label {
-  font-size: 0.55rem;
+.token-avatar {
+  font-size: 0.9rem;
   line-height: 1;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: #f8fafc;
 }
 
 .disc.black {

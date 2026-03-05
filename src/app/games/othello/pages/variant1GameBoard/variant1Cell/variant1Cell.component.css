@@ -22,10 +22,9 @@
   place-items: center;
 }
 
-.token-label {
-  font-size: 0.53rem;
-  font-weight: 800;
-  color: #f8fafc;
+.token-avatar {
+  font-size: 0.85rem;
+  line-height: 1;
 }
 
 .disc.black {

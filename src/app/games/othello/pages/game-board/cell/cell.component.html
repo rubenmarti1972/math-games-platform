@@ -1,7 +1,7 @@
 <div class="cell" (click)="onClick()">
   <div *ngIf="state !== 'empty'" class="disc" [ngClass]="state">
-    <span class="token-label">
-      {{ state === 'black' ? 'Nox' : 'Lira' }}
+    <span class="token-avatar" [attr.aria-label]="state === 'black' ? 'Avatar Nox' : 'Avatar Lira'">
+      {{ state === 'black' ? '🧙' : '🧝' }}
     </span>
   </div>
 </div>
