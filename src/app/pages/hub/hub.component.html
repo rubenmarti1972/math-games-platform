@@ -1,0 +1,44 @@
+<section class="hub">
+  <app-math-background></app-math-background>
+
+  <header class="hub-header glass-panel">
+    <p class="eyebrow">MATH GAMES PLATFORM</p>
+    <h1>Learn mathematics through games</h1>
+    <p class="subtitle">
+      Explore strategic puzzles, logic boards, and creative challenges designed to sharpen your math skills.
+    </p>
+
+    <div class="controls">
+      <label>
+        <span>Search games</span>
+        <input
+          type="search"
+          [value]="searchText()"
+          (input)="updateSearch($any($event.target).value)"
+          placeholder="Find by title or description"
+        />
+      </label>
+
+      <label>
+        <span>Difficulty</span>
+        <select [value]="difficultyFilter()" (change)="updateDifficulty($any($event.target).value)">
+          <option value="all">All levels</option>
+          @for (difficulty of difficultyOptions(); track difficulty) {
+            <option [value]="difficulty">{{ difficulty }}</option>
+          }
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <section class="games-grid" aria-label="Game catalog">
+    @for (game of filteredGames(); track game.id) {
+      <app-game-card [game]="game"></app-game-card>
+    } @empty {
+      <article class="empty-state glass-panel">
+        <h2>No games found</h2>
+        <p>Try a different search term or choose another difficulty filter.</p>
+      </article>
+    }
+  </section>
+</section>
