@@ -2,6 +2,10 @@
   display: block;
 }
 
+:host ::ng-deep .modal {
+  display: none !important;
+}
+
 .adventure-shell {
   min-height: 100vh;
   background:
@@ -47,6 +51,8 @@
 .topbar-actions {
   display: flex;
   gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .btn {
@@ -81,6 +87,19 @@
     margin: 0.25rem 0 0;
     color: #cbd5e1;
     font-size: 0.85rem;
+  }
+}
+
+.orb-legend {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 0.82rem;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
   }
 }
 
@@ -122,21 +141,40 @@
   }
 }
 
+.orb {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  display: inline-block;
+  border: 1px solid rgba(226, 232, 240, 0.45);
+
+  &--red {
+    background: radial-gradient(circle at 30% 30%, #fecaca, #dc2626 70%);
+  }
+
+  &--green {
+    background: radial-gradient(circle at 30% 30%, #bbf7d0, #16a34a 70%);
+  }
+}
+
 .avatar {
   position: absolute;
   transform: translate(-50%, -50%);
   display: grid;
   justify-items: center;
-  gap: 0.15rem;
+  gap: 0.2rem;
   padding: 0.35rem 0.45rem;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.35);
   background: rgba(30, 41, 59, 0.9);
   transition: left 300ms ease, transform 220ms ease, border-color 200ms ease;
 
-  span {
-    font-size: 1rem;
-    line-height: 1;
+  .avatar-orb {
+    width: 1.05rem;
+    height: 1.05rem;
+    border-radius: 999px;
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    display: block;
   }
 
   small {
@@ -145,8 +183,16 @@
     white-space: nowrap;
   }
 
+  &--red .avatar-orb {
+    background: radial-gradient(circle at 30% 30%, #fecaca, #dc2626 70%);
+  }
+
+  &--green .avatar-orb {
+    background: radial-gradient(circle at 30% 30%, #bbf7d0, #16a34a 70%);
+  }
+
   &--discovered {
-    border-color: rgba(52, 211, 153, 0.78);
+    border-color: rgba(147, 197, 253, 0.78);
     transform: translate(-50%, -50%) scale(1.07);
   }
 }
@@ -195,6 +241,9 @@
     h3 {
       margin: 0;
       font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     p {

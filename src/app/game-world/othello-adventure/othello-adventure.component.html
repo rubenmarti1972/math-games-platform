@@ -3,11 +3,12 @@
     <div>
       <p class="eyebrow">AVENTURA MATEMÁTICA · OTHELLO</p>
       <h1>El Encierro de la Isla Estratégica</h1>
-      <p class="subtitle">Ahora recorres la isla con personajes-avatar. Cada avance desbloquea pistas en el board.</p>
+      <p class="subtitle">Nox (rojo) y Lira (verde) ahora son los avatares principales del tablero de aventura.</p>
     </div>
 
     <div class="topbar-actions">
-      <a routerLink="/" class="btn">Mundo 3D</a>
+      <a routerLink="/games/othello/instrucciones" class="btn">Ver instrucciones</a>
+      <a routerLink="/" class="btn btn--ghost">Mundo 3D</a>
       <button type="button" class="btn btn--ghost" (click)="toggleJournal()">
         {{ journalOpen() ? 'Ocultar misión' : 'Mostrar misión' }}
       </button>
@@ -20,6 +21,11 @@
       <p>
         Zona actual: <strong>{{ currentBoardStep().label }}</strong> · {{ currentBoardStep().clue }}
       </p>
+    </div>
+
+    <div class="orb-legend">
+      <span><i class="orb orb--red"></i> Nox</span>
+      <span><i class="orb orb--green"></i> Lira</span>
     </div>
 
     <div class="path-track">
@@ -35,12 +41,14 @@
         <div
           class="avatar"
           [class.avatar--discovered]="isDiscovered(encounter.id)"
+          [class.avatar--red]="encounter.orb === 'red'"
+          [class.avatar--green]="encounter.orb === 'green'"
           [style.left.%]="avatarPosition(encounter.id)"
-          [style.top.%]="16 + encounter.lane * 28"
+          [style.top.%]="22 + encounter.lane * 34"
           [attr.aria-label]="encounter.name"
         >
-          <span>{{ encounter.avatar }}</span>
-          <small>{{ encounter.name.split(',')[0] }}</small>
+          <span class="avatar-orb"></span>
+          <small>{{ encounter.name }}</small>
         </div>
       }
     </div>
@@ -60,7 +68,10 @@
         @for (encounter of encounters; track encounter.id) {
           <li [class.done]="isDiscovered(encounter.id)">
             <div>
-              <h3>{{ encounter.avatar }} {{ encounter.name }}</h3>
+              <h3>
+                <i class="orb" [class.orb--red]="encounter.orb === 'red'" [class.orb--green]="encounter.orb === 'green'"></i>
+                {{ encounter.name }}
+              </h3>
               <p>{{ encounter.role }}</p>
               <small>{{ encounter.challenge }}</small>
             </div>

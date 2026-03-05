@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 interface CharacterEncounter {
-  id: 'guardian' | 'trickster' | 'oracle';
+  id: 'nox' | 'lira';
   name: string;
   role: string;
   challenge: string;
-  avatar: string;
+  orb: 'red' | 'green';
   lane: number;
 }
 
@@ -28,38 +28,30 @@ interface BoardTile {
 export class OthelloAdventureComponent {
   readonly encounters: CharacterEncounter[] = [
     {
-      id: 'guardian',
-      name: 'Nox, Guardián de Esquinas',
-      role: 'Centinela',
-      challenge: 'Protege 1 esquina del tablero para desbloquear la salida del bosque.',
-      avatar: '🛡️',
+      id: 'nox',
+      name: 'Nox',
+      role: 'Orbe rojo (ataque táctico)',
+      challenge: 'Cierra líneas de captura y presiona bordes sin abrir esquinas.',
+      orb: 'red',
       lane: 0
     },
     {
-      id: 'trickster',
-      name: 'Lyra, Trampera de Flancos',
-      role: 'Ilusionista',
-      challenge: 'Evita perder más de 2 fichas seguidas en un mismo turno de reacción.',
-      avatar: '🧠',
+      id: 'lira',
+      name: 'Lira',
+      role: 'Orbe verde (control estratégico)',
+      challenge: 'Controla movilidad rival y asegura la ventaja en el cierre.',
+      orb: 'green',
       lane: 1
-    },
-    {
-      id: 'oracle',
-      name: 'Sigma, Oráculo Fractal',
-      role: 'Estratega final',
-      challenge: 'Termina con mayoría de fichas para sellar el Encierro Cromático.',
-      avatar: '🔮',
-      lane: 2
     }
   ];
 
   readonly boardTiles: BoardTile[] = [
-    { id: 1, label: 'Campamento', clue: 'Analiza aperturas y no regales movilidad.' },
-    { id: 2, label: 'Puente táctico', clue: 'Piensa dos jugadas adelante.' },
-    { id: 3, label: 'Bosque espejo', clue: 'Forzar respuesta también es estrategia.' },
-    { id: 4, label: 'Portal central', clue: 'Controla el centro sin perder bordes.' },
-    { id: 5, label: 'Fortín lateral', clue: 'Evita jugadas que abran esquinas.' },
-    { id: 6, label: 'Santuario final', clue: 'Consolida mayoría en cierre de partida.' }
+    { id: 1, label: 'Campamento', clue: 'Define si abrirás juego agresivo o de control.' },
+    { id: 2, label: 'Puente táctico', clue: 'Cada jugada debe preparar la siguiente.' },
+    { id: 3, label: 'Bosque espejo', clue: 'Convierte respuesta rival en oportunidad.' },
+    { id: 4, label: 'Portal central', clue: 'Evita regalar estabilidad en diagonales.' },
+    { id: 5, label: 'Fortín lateral', clue: 'Protege acceso a esquinas clave.' },
+    { id: 6, label: 'Santuario final', clue: 'Consolida mayoría de orbes en el final.' }
   ];
 
   readonly discoveredIds = signal<CharacterEncounter['id'][]>([]);
@@ -71,7 +63,7 @@ export class OthelloAdventureComponent {
   readonly activeObjective = computed(() => {
     const discovered = this.discoveredIds();
     return this.encounters.find((encounter) => !discovered.includes(encounter.id))?.challenge
-      ?? '¡Aventura completada! Ya puedes dominar la isla estratégica.';
+      ?? '¡Aventura completada! Nox y Lira dominan la isla estratégica.';
   });
 
   readonly currentBoardStep = computed(() => {
