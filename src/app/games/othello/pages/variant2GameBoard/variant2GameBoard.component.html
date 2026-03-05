@@ -15,7 +15,6 @@
     </ng-container>
 
     <ng-container *ngFor="let row of board; let i = index">
-      <div class="cell header row-label">{{ i + 1 }}</div>
       <ng-container *ngFor="let cell of row; let j = index">
         <app-variant2-cell
           class="cell"

@@ -30,7 +30,8 @@
     #0b1220;
 }
 
-.board {
+.terrain-wrapper {
+  min-height: 64vh;
   display: grid;
   grid-template-columns: var(--cell-size) repeat(var(--board-cols), var(--cell-size));
   grid-template-rows: var(--cell-size) repeat(var(--board-rows), var(--cell-size));
