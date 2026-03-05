@@ -16,6 +16,7 @@ export class Variant1GameBoardComponent implements OnDestroy {
   board$ = this.game.board$;
   winnerMessage = '';
   private boardSub?: Subscription;
+  readonly tileSize = 62;
 
   constructor(private game: GameService) {}
 
@@ -25,18 +26,16 @@ export class Variant1GameBoardComponent implements OnDestroy {
 
     this.boardSub = this.board$.subscribe((board) => {
       const flat = board.flat();
-      if (board.length === 0 || flat.includes('empty')) {
-        return;
-      }
+      if (board.length === 0 || flat.includes('empty')) return;
 
       const black = flat.filter((c) => c === 'black').length;
       const white = flat.filter((c) => c === 'white').length;
 
       this.winnerMessage = black === white
-        ? 'Empate en el reto-isla: ambos conquistaron igual territorio.'
+        ? 'Empate: ambos dominaron la misma cantidad de terreno.'
         : black > white
-          ? 'Nox gana el reto-isla por mayoría de avatares.'
-          : 'Lira gana el reto-isla por mayoría de avatares.';
+          ? 'Nox domina el mapa de reto.'
+          : 'Lira domina el mapa de reto.';
     });
   }
 
@@ -44,7 +43,28 @@ export class Variant1GameBoardComponent implements OnDestroy {
     this.boardSub?.unsubscribe();
   }
 
-  onCellClick(i: number, j: number) {
+  onCellClick(i: number, j: number): void {
     this.game.tryMove(i, j);
+  }
+
+  getTileStyle(row: number, col: number): Record<string, string> {
+    const size = this.tileSize;
+    const stagger = row % 2 === 0 ? 0 : size * 0.46;
+    const jitterX = ((row * 11 + col * 7) % 5) - 2;
+    const jitterY = ((row * 5 + col * 3) % 5) - 2;
+    const left = col * (size * 0.92) + stagger + jitterX;
+    const top = row * (size * 0.78) + jitterY;
+
+    return { left: `${left}px`, top: `${top}px`, width: `${size}px`, height: `${size}px` };
+  }
+
+  boardWidth(rows: number, cols: number): string {
+    const size = this.tileSize;
+    return `${Math.ceil(cols * (size * 0.92) + size * 1.55)}px`;
+  }
+
+  boardHeight(rows: number, cols: number): string {
+    const size = this.tileSize;
+    return `${Math.ceil(rows * (size * 0.78) + size * 1.2)}px`;
   }
 }

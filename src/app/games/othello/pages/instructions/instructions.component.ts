@@ -13,10 +13,10 @@ export class InstructionsComponent {
   hideInstructions: boolean = true;
   currentPage = 0;
   instructionsOne: string[] = [
-    'Aventura para dos estrategas: Nox (orbe rojo) vs Lira (orbe verde).',
-    'La partida inicia con 2 orbes verdes (Lira) y 2 orbes rojos (Nox) en el centro del tablero.',
+    'Aventura para dos estrategas: Nox (avatar de fuego) vs Lira (avatar de bosque).',
+    'La partida inicia con 2 avatares de cada bando en el centro del territorio.',
     'Por turno, cada jugador puede realizar un movimiento.',
-    'En cada turno colocas un orbe para encerrar una fila continua de orbes rivales. Los orbes encerrados se convierten a tu bando.'
+    'En cada turno colocas un avatar para encerrar una fila continua de avatares rivales. Los encerrados se convierten a tu bando.'
   ];
 
    instructionsTwo: string[] = [
@@ -24,7 +24,7 @@ export class InstructionsComponent {
     'El movimiento se puede realizar de forma horizontal, vertical o diagonal. ',
     'Si un jugador no puede realizar algún movimiento en su turno, deberá pasar el turno.',
     'El juego termina cuando no se puedan realizar más movimientos. ',
-    'Gana quien termine con más orbes de su bando (Nox o Lira). ',
+    'Gana quien termine con más territorios conquistados por su avatar (Nox o Lira). ',
 
   ];
 

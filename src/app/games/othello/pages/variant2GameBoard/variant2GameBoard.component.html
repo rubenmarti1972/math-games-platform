@@ -2,31 +2,13 @@
   <p class="winner-banner">{{ winnerMessage }}</p>
 }
 
-<div class="board-wrapper island-mode">
-  <div
-    class="board island-mode"
-    *ngIf="board$ | async as board"
-    [style.--board-rows]="board.length"
-    [style.--board-cols]="board[0].length"
-  >
-    <div class="cell header empty"></div>
-
-    <ng-container *ngFor="let _ of board[0]; let col = index">
-      <div class="cell header col-label">
-        {{ ('ABCDEFGHIJKLMNOPQRSTUVWXYZ')[col] }}
-      </div>
-    </ng-container>
-
+<div class="terrain-wrapper" *ngIf="board$ | async as board">
+  <div class="terrain-board" [style.width]="boardWidth(board.length, board[0].length)" [style.height]="boardHeight(board.length, board[0].length)">
     <ng-container *ngFor="let row of board; let i = index">
-      <div class="cell header row-label">{{ i + 1 }}</div>
       <ng-container *ngFor="let cell of row; let j = index">
-        <app-variant2-cell
-          class="cell"
-          [class.territory-nox]="cell === 'black'"
-          [class.territory-lira]="cell === 'white'"
-          [state]="cell"
-          (cellClick)="onCellClick(i, j)">
-        </app-variant2-cell>
+        <div class="terrain-tile" [class.territory-nox]="cell === 'black'" [class.territory-lira]="cell === 'white'" [ngStyle]="getTileStyle(i, j)">
+          <app-variant2-cell [state]="cell" (cellClick)="onCellClick(i, j)"></app-variant2-cell>
+        </div>
       </ng-container>
     </ng-container>
   </div>

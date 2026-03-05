@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GameService } from '../../services/game.service';
 import { CellComponent } from './cell/cell.component';
@@ -8,10 +8,7 @@ import { CellComponent } from './cell/cell.component';
 @Component({
   selector: 'app-game-board',
   standalone: true,
-  imports: [
-    CommonModule,
-    CellComponent
-  ],
+  imports: [CommonModule, CellComponent],
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.css']
 })
@@ -24,16 +21,17 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   winnerMessage = '';
   private gameStateSub?: Subscription;
 
+  readonly tileSize = 62;
+
   constructor(
     private gameService: GameService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
-      this.retoId = isNaN(id) ? null : id;
+      this.retoId = Number.isNaN(id) ? null : id;
       this.winnerMessage = '';
 
       switch (id) {
@@ -51,21 +49,16 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
     this.gameStateSub = this.board$.subscribe((board) => {
       const flat = board.flat();
-      const hasEmpty = flat.includes('empty');
-      if (hasEmpty || board.length === 0) {
-        return;
-      }
+      if (flat.includes('empty') || board.length === 0) return;
 
       const black = flat.filter((cell) => cell === 'black').length;
       const white = flat.filter((cell) => cell === 'white').length;
 
-      if (black === white) {
-        this.winnerMessage = 'Empate en la isla: Nox y Lira conquistaron el mismo número de territorios.';
-      } else {
-        this.winnerMessage = black > white
-          ? 'Nox gana: conquistó más recuadros de la isla.'
-          : 'Lira gana: conquistó más recuadros de la isla.';
-      }
+      this.winnerMessage = black === white
+        ? 'Empate: ambos dominaron la misma cantidad de terreno.'
+        : black > white
+          ? 'Nox domina el mapa: encerró más territorios.'
+          : 'Lira domina el mapa: encerró más territorios.';
     });
   }
 
@@ -73,7 +66,33 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.gameStateSub?.unsubscribe();
   }
 
-  onCellClick(row: number, col: number) {
+  onCellClick(row: number, col: number): void {
     this.gameService.tryMove(row, col);
+  }
+
+  getTileStyle(row: number, col: number): Record<string, string> {
+    const size = this.tileSize;
+    const stagger = row % 2 === 0 ? 0 : size * 0.46;
+    const jitterX = ((row * 11 + col * 7) % 5) - 2;
+    const jitterY = ((row * 5 + col * 3) % 5) - 2;
+    const left = col * (size * 0.92) + stagger + jitterX;
+    const top = row * (size * 0.78) + jitterY;
+
+    return {
+      left: `${left}px`,
+      top: `${top}px`,
+      width: `${size}px`,
+      height: `${size}px`
+    };
+  }
+
+  boardWidth(rows: number, cols: number): string {
+    const size = this.tileSize;
+    return `${Math.ceil(cols * (size * 0.92) + size * 1.55)}px`;
+  }
+
+  boardHeight(rows: number, cols: number): string {
+    const size = this.tileSize;
+    return `${Math.ceil(rows * (size * 0.78) + size * 1.2)}px`;
   }
 }
