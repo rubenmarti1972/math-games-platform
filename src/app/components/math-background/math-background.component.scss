@@ -1,0 +1,33 @@
+:host {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.math-background {
+  position: absolute;
+  inset: 0;
+}
+
+.symbol {
+  position: absolute;
+  color: rgba(148, 163, 184, 0.22);
+  font-weight: 700;
+  user-select: none;
+  animation: drift var(--duration, 18s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.15;
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(5deg);
+    opacity: 0.32;
+  }
+}
