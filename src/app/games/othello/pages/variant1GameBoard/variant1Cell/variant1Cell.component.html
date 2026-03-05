@@ -1,8 +1,7 @@
 <div class="cell" (click)="cellClick.emit()">
-  <div *ngIf="state !== 'empty'" class="disc" [ngClass]="state"></div>
+  <div *ngIf="state !== 'empty'" class="disc" [ngClass]="state">
+    <span class="token-label">
+      {{ state === 'black' ? 'Nox' : state === 'white' ? 'Lira' : state === 'dual' ? 'N/L' : state }}
+    </span>
+  </div>
 </div>
-
-
-
-
-

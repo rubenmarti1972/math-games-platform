@@ -1,11 +1,8 @@
-/* src/app/pages/score-board/score-board.component.css */
-/* src/app/pages/score-board/score-board.component.css */
-
 .scoreboard {
   background: #f0f0f0;
   padding: 0.75rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -18,21 +15,21 @@
   gap: 0.5rem;
 }
 
-.disc {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  /*border: 1px solid #666;*/
-  flex-shrink: 0;
+.token-chip {
+  padding: 0.2rem 0.35rem;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.03em;
 }
 
-.disc.red {
-  background-color: red;
+.token-chip--nox {
+  background: linear-gradient(135deg, #dc2626, #7f1d1d);
 }
 
-.disc.green {
-  background-color: #0a0;
+.token-chip--lira {
+  background: linear-gradient(135deg, #16a34a, #166534);
 }
 
 .label {
@@ -47,4 +44,3 @@
   font-weight: bold;
   color: #111;
 }
-

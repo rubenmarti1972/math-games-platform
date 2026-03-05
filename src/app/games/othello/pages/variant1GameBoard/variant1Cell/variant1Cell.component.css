@@ -16,20 +16,27 @@
   left: 4px;
   right: 4px;
   bottom: 4px;
-  border-radius: 50%;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  display: grid;
+  place-items: center;
+}
+
+.token-label {
+  font-size: 0.53rem;
+  font-weight: 800;
+  color: #f8fafc;
 }
 
 .disc.black {
-  background-color: red;
+  background: linear-gradient(135deg, #dc2626, #7f1d1d);
 }
 
 .disc.white {
-  background-color: green;
+  background: linear-gradient(135deg, #16a34a, #166534);
 }
 
 .disc.dual {
-  background: linear-gradient(to right, red 50%, green 50%);
-  border-color: #aaa;
+  background: linear-gradient(to right, #dc2626 50%, #16a34a 50%);
+  border-color: #d1d5db;
 }
-
-

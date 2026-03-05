@@ -3,11 +3,19 @@
   font-size: 1.1rem;
 }
 
-.turn-indicator .black {
-  color: red
+.turn-chip {
+  display: inline-block;
+  margin-left: 0.3rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  color: #f8fafc;
+  font-weight: 700;
 }
 
-.turn-indicator .white {
-  color: green;
-  text-shadow: 0 0 2px green;
+.turn-chip.black {
+  background: linear-gradient(135deg, #dc2626, #7f1d1d);
+}
+
+.turn-chip.white {
+  background: linear-gradient(135deg, #16a34a, #166534);
 }
