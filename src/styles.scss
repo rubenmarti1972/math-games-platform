@@ -1,0 +1,15 @@
+@use 'styles/variables' as *;
+@use 'styles/layout';
+@use 'styles/components';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: $color-bg;
+  color: $color-text;
+  font-family: $font-body;
+}
