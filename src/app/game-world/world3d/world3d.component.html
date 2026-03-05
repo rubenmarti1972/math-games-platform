@@ -9,9 +9,18 @@
       un juego.
     </p>
     <ul>
-      <li><strong>Strategy Island</strong> → Othello</li>
-      <li><strong>Logic Island</strong> → Panda 4x4</li>
-      <li><strong>Color Island</strong> → Colores</li>
+      <li>
+        <strong>Strategy Island</strong> → Othello
+        <button type="button" (click)="navigateTo('/games/othello')">Entrar</button>
+      </li>
+      <li>
+        <strong>Logic Island</strong> → Panda 4x4
+        <button type="button" (click)="navigateTo('/games/panda4x4')">Entrar</button>
+      </li>
+      <li>
+        <strong>Color Island</strong> → Colores
+        <button type="button" (click)="navigateTo('/games/colores')">Entrar</button>
+      </li>
     </ul>
   </aside>
 </section>

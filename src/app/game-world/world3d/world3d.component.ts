@@ -84,6 +84,10 @@ export class World3dComponent implements AfterViewInit, OnDestroy {
     this.renderer?.dispose?.();
   }
 
+  navigateTo(route: PortalRoute): void {
+    void this.router.navigateByUrl(route);
+  }
+
   private async loadThreeRuntime(): Promise<void> {
     if (window.THREE?.OrbitControls) {
       return;
@@ -193,11 +197,19 @@ export class World3dComponent implements AfterViewInit, OnDestroy {
     portalCore.position.copy(portal.position);
     portalCore.rotation.x = Math.PI / 2;
 
+    const portalHitArea = new THREE.Mesh(
+      new THREE.CylinderGeometry(1.45, 1.45, 0.6, 24),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 })
+    );
+    portalHitArea.position.copy(portal.position);
+
     const label = this.createLabelSprite(name, portalColor);
     label.position.set(0, 4.25, 0);
 
-    island.add(base, top, portal, portalCore, label);
+    island.add(base, top, portal, portalCore, portalHitArea, label);
     this.portalTargets.push({ mesh: portal, route });
+    this.portalTargets.push({ mesh: portalCore, route });
+    this.portalTargets.push({ mesh: portalHitArea, route });
     this.floatingObjects.push(island);
     this.scene.add(island);
   }
@@ -297,7 +309,8 @@ export class World3dComponent implements AfterViewInit, OnDestroy {
     this.pointer.y = -((event.clientY - bounds.top) / bounds.height) * 2 + 1;
 
     this.raycaster.setFromCamera(this.pointer, this.camera);
-    const intersections = this.raycaster.intersectObjects(this.portalTargets.map((entry) => entry.mesh), false);
+    const hitObjects = this.portalTargets.map((entry) => entry.mesh);
+    const intersections = this.raycaster.intersectObjects(hitObjects, false);
     const hitPortal = intersections?.[0]?.object;
     const target = this.portalTargets.find((entry) => entry.mesh === hitPortal);
 
