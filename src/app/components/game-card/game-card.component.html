@@ -1,0 +1,11 @@
+<a class="game-card" [routerLink]="game.route" [attr.aria-label]="'Play ' + game.title">
+  <div class="game-card__icon" aria-hidden="true">{{ game.icon }}</div>
+  <div class="game-card__content">
+    <div class="game-card__top">
+      <h3>{{ game.title }}</h3>
+      <span class="badge">{{ game.difficulty }}</span>
+    </div>
+    <p>{{ game.description }}</p>
+    <span class="play-btn">Play</span>
+  </div>
+</a>

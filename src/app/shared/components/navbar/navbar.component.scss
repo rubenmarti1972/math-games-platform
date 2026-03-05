@@ -1,0 +1,61 @@
+@use '../../../../styles/variables' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 72px;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $color-primary;
+  color: $color-white;
+  box-shadow: 0 4px 12px rgba(15, 42, 68, 0.2);
+
+  &__brand {
+    font-family: $font-heading;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.25rem;
+
+    a {
+      color: $color-white;
+      text-decoration: none;
+      font-weight: 500;
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s ease, border-color 0.25s ease;
+
+      &:hover,
+      &.active {
+        color: $color-secondary;
+        border-color: $color-secondary;
+      }
+
+      &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+
+    &__links {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}

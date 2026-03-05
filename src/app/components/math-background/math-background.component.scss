@@ -1,0 +1,42 @@
+.math-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+
+  &__symbol {
+    position: absolute;
+    color: rgba(148, 163, 184, 0.2);
+    font-weight: 700;
+    animation: floatUp 13s linear infinite;
+
+    @for $i from 1 through 9 {
+      &:nth-child(#{$i}) {
+        left: #{6% + ($i * 10%)};
+        top: #{80% + ($i * 4%)};
+        font-size: #{1.2rem + ($i * 0.2rem)};
+        animation-delay: -#{$i * 1.5s};
+        animation-duration: #{10s + ($i * 0.9s)};
+      }
+    }
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(50px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-35vh) translateX(16px) rotate(6deg);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-95vh) translateX(-14px) rotate(-6deg);
+    opacity: 0;
+  }
+}
