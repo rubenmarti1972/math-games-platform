@@ -2,10 +2,6 @@
   display: block;
 }
 
-:host ::ng-deep .modal {
-  display: none !important;
-}
-
 .adventure-shell {
   min-height: 100vh;
   background:

@@ -1,11 +1,11 @@
 <!-- Botón para abrir el modal -->
-<button class="show-instructions" (click)="toggleInstructions()">Mostrar Instrucciones</button>
+<button class="show-instructions" (click)="toggleInstructions()">Mostrar instrucciones</button>
 
 <!-- Modal -->
 <div *ngIf="!hideInstructions" class="modal">
   <div class="modal-content">
     <span class="close" (click)="toggleInstructions()">&times;</span>
-    <h2>Instrucciones del Juego</h2>
+    <h2>Instrucciones · Modo Nox vs Lira</h2>
 
     <!-- Mostrar las instrucciones basadas en la página actual -->
     <div *ngIf="currentPage === 0">
