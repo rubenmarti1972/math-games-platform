@@ -10,6 +10,9 @@
   min-height: 540px;
   border-radius: 1rem;
   overflow: hidden;
-  border: 1px solid rgba(51, 65, 85, 0.75);
-  background: radial-gradient(circle at 50% 35%, rgba(15, 23, 42, 0.6), #020617 80%);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(251, 191, 36, 0.22), transparent 35%),
+    radial-gradient(circle at 82% 22%, rgba(56, 189, 248, 0.2), transparent 35%),
+    linear-gradient(180deg, #0f172a 0%, #111827 45%, #030712 100%);
 }
