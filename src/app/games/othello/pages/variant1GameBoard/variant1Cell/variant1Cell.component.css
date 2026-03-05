@@ -16,20 +16,26 @@
   left: 4px;
   right: 4px;
   bottom: 4px;
-  border-radius: 50%;
+  border-radius: 8px;
+  border: 1px solid rgba(226, 232, 240, 0.45);
+  display: grid;
+  place-items: center;
+}
+
+.token-avatar {
+  font-size: 0.85rem;
+  line-height: 1;
 }
 
 .disc.black {
-  background-color: red;
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d);
 }
 
 .disc.white {
-  background-color: green;
+  background: linear-gradient(135deg, #166534, #14532d);
 }
 
 .disc.dual {
-  background: linear-gradient(to right, red 50%, green 50%);
-  border-color: #aaa;
+  background: linear-gradient(to right, #dc2626 50%, #16a34a 50%);
+  border-color: #d1d5db;
 }
-
-
