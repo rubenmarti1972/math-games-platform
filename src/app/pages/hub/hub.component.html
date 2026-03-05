@@ -1,0 +1,14 @@
+<section class="hub">
+  <app-math-background></app-math-background>
+
+  <header class="hub__header">
+    <h1>Math Games Platform</h1>
+    <p>Choose a game and jump into the challenge.</p>
+  </header>
+
+  <div class="hub__grid">
+    @for (game of games; track game.route) {
+      <app-hub-game-card [game]="game"></app-hub-game-card>
+    }
+  </div>
+</section>
