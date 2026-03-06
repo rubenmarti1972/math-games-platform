@@ -1,6 +1,6 @@
 :host {
   display: block;
-  background: linear-gradient(135deg,#366abd,#9fadcd);
+  background: linear-gradient(135deg,#4d7c0f,#a3e635);
   color: white;
   padding: 40px 20px;
   text-align: center;
@@ -10,18 +10,13 @@
 /* ================= HEADER ================= */
 
 .slide-header {
-  background: linear-gradient(135deg, #4facfe 0%, #00c6ff 100%);
+  background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%);
   padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
   border-radius: 14px;
   margin-bottom: 30px;
-}
-
-.logo {
-  height: 70px;
 }
 
 .titles {
@@ -137,14 +132,14 @@ button:hover {
 
 .board {
   display: grid;
-  width: 600px;
-  max-width: 92vw;
+  width: min(600px, 92vw);
   aspect-ratio: 1 / 1;
+  justify-self: center;
 
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
 
-  background: linear-gradient(145deg, #d9f2ff, #9ad9ff);
+  background: linear-gradient(145deg, #d9f99d, #86efac);
   border-radius: 14px;
   border: 4px solid white;
   padding: 8px;

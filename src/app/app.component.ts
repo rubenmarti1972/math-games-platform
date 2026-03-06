@@ -22,7 +22,7 @@ interface MissionMeta {
     @if (isGameRoute()) {
       <section class="game-hud">
         <div class="game-hud__left">
-          <p class="label">MODO VIDEOJUEGO</p>
+          <p class="label">MODO GRANJA</p>
           <h2>{{ currentMission().title }}</h2>
           <p>{{ currentMission().objective }}</p>
         </div>
@@ -42,7 +42,7 @@ interface MissionMeta {
         </div>
 
         <div class="game-hud__actions">
-          <a routerLink="/" class="hud-btn">Volver al mundo 3D</a>
+          <a routerLink="/" class="hud-btn">Volver al mapa de granjas</a>
           <a routerLink="/games" class="hud-btn hud-btn--alt">Catálogo</a>
         </div>
       </section>
@@ -67,23 +67,23 @@ export class AppComponent implements OnDestroy {
 
     if (route.startsWith('/games/othello')) {
       return {
-        title: 'Strategy Island — Othello Arena',
-        objective: 'Conquista el tablero y controla las esquinas para dominar la isla estratégica.',
+        title: 'Parcela Estratégica — Duelo de Granjas',
+        objective: 'Conquista el tablero de cultivos y controla las esquinas de la parcela.',
         energy: 88
       };
     }
 
     if (route.startsWith('/games/panda4x4')) {
       return {
-        title: 'Logic Island — Panda Reactor',
-        objective: 'Resuelve patrones y secuencias lógicas para activar el reactor de la isla.',
+        title: 'Parcela Lógica — Mosaico Rural',
+        objective: 'Resuelve patrones de cultivos para ordenar el granero principal.',
         energy: 92
       };
     }
 
     return {
-      title: 'Color Island — Chroma Lab',
-      objective: 'Combina color y razonamiento para desbloquear experimentos de nivel superior.',
+      title: 'Parcela de Pigmentos — Taller de Tintes',
+      objective: 'Combina pigmentos naturales para mejorar la cosecha de temporada.',
       energy: 85
     };
   });
