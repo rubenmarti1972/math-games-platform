@@ -10,19 +10,19 @@
       <div class="side-panel">
         <!-- 👇 Este mode-selector es lo que vamos a estilizar -->
         <div class="mode-selector">
-          <label [class.active]="mode === 'pvp'" title="Jugador 1 vs Jugador 2">
+          <label [class.active]="mode === 'pvp'" title="Cuadrilla contra cuadrilla">
 
             <input type="radio" name="mode" (change)="setMode('pvp')" [checked]="mode === 'pvp'" />
             <i class="fas fa-user" style="color: red;"></i>
             <i class="fas fa-user" style="color: green;"></i>
-            <span>Jugador vs Jugador</span>
+            <span>Cuadrilla vs Cuadrilla</span>
           </label>
 
-          <label [class.active]="mode === 'cpu'" title="Jugador 1 vs Jugador 2">
+          <label [class.active]="mode === 'cpu'" title="Cuadrilla contra capataz">
             <input type="radio" name="mode" (change)="setMode('cpu')" [checked]="mode === 'cpu'" />
             <i class="fas fa-user" style="color: red;"></i>
             <i class="fas fa-desktop" style="color: green;"></i>
-            <span>Jugador vs PC</span>
+            <span>Cuadrilla vs Capataz</span>
           </label>
         </div>
 
@@ -41,7 +41,7 @@
   </main>
 
   <footer class="app-footer">
-    <small>&copy; {{ currentYear }} - Juego Encerrando colores - Fundapromat - </small>
+    <small>&copy; {{ currentYear }} - Juego Encerrando parcelas - Fundapromat - </small>
     <a href="https://docs.google.com/presentation/d/1a893t9SWsrmtRKGFjBaqJ9d5xkxk98TVUans4RmArsQ/edit?slide=id.gf1190ce234_0_0#slide=id.gf1190ce234_0_0" target="_blank">
     Ver presentación
     </a>
