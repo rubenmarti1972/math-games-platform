@@ -12,10 +12,10 @@
   align-items: center;
   padding: 0.85rem 1rem;
   background:
-    radial-gradient(circle at 15% 0, rgba(59, 130, 246, 0.3), transparent 35%),
-    rgba(2, 6, 23, 0.95);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.28);
-  color: #e2e8f0;
+    radial-gradient(circle at 15% 0, rgba(132, 204, 22, 0.28), transparent 35%),
+    rgba(31, 42, 27, 0.95);
+  border-bottom: 1px solid rgba(163, 230, 53, 0.35);
+  color: #f7fee7;
 
   h2 {
     margin: 0.1rem 0 0.2rem;
@@ -25,13 +25,13 @@
   p {
     margin: 0;
     font-size: 0.85rem;
-    color: #cbd5e1;
+    color: #ecfccb;
   }
 }
 
 .label {
   margin: 0;
-  color: #93c5fd;
+  color: #d9f99d;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   font-weight: 700;
@@ -48,7 +48,7 @@
   font-size: 0.8rem;
 
   strong {
-    color: #f8fafc;
+    color: #f7fee7;
     font-size: 0.9rem;
   }
 }
@@ -56,14 +56,14 @@
 .progress-track {
   width: 100%;
   height: 7px;
-  background: rgba(148, 163, 184, 0.25);
+  background: rgba(163, 230, 53, 0.28);
   border-radius: 99px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  background: linear-gradient(90deg, #84cc16, #4d7c0f);
   transition: width 260ms ease;
 }
 
@@ -78,14 +78,14 @@
   text-align: center;
   padding: 0.45rem 0.8rem;
   border-radius: 0.65rem;
-  border: 1px solid rgba(59, 130, 246, 0.6);
-  background: rgba(30, 41, 59, 0.85);
-  color: #e2e8f0;
+  border: 1px solid rgba(163, 230, 53, 0.65);
+  background: rgba(47, 74, 36, 0.85);
+  color: #f7fee7;
   font-size: 0.8rem;
   font-weight: 600;
 
   &--alt {
-    border-color: rgba(167, 139, 250, 0.6);
+    border-color: rgba(132, 204, 22, 0.65);
   }
 }
 
@@ -96,8 +96,8 @@
 .app-main--immersive {
   min-height: calc(100vh - 78px);
   background:
-    radial-gradient(circle at top, rgba(30, 64, 175, 0.22), transparent 35%),
-    #020617;
+    radial-gradient(circle at top, rgba(132, 204, 22, 0.2), transparent 35%),
+    #1f2a1b;
 }
 
 @media (max-width: 900px) {

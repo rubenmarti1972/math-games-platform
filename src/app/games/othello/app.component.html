@@ -1,6 +1,5 @@
 <div class="app-container">
   <header class="app-header">
-    <img src="assets/othello/images/logo.png" alt="Logo" class="logo" />
     <h1 class="title">{{ title }}</h1>
     <div class="spacer"></div>
   </header>
@@ -15,14 +14,14 @@
             <input type="radio" name="mode" (change)="setMode('pvp')" [checked]="mode === 'pvp'" />
             <i class="fas fa-user" style="color: red;"></i>
             <i class="fas fa-user" style="color: green;"></i>
-            <span>Cuadrilla vs Cuadrilla</span>
+            <span>Granja Norte vs Granja Sur</span>
           </label>
 
-          <label [class.active]="mode === 'cpu'" title="Cuadrilla vs Capataz">
+          <label [class.active]="mode === 'cpu'" title="Granja vs Capataz">
             <input type="radio" name="mode" (change)="setMode('cpu')" [checked]="mode === 'cpu'" />
             <i class="fas fa-user" style="color: red;"></i>
             <i class="fas fa-desktop" style="color: green;"></i>
-            <span>Cuadrilla vs Capataz</span>
+            <span>Granja vs Capataz</span>
           </label>
         </div>
 
@@ -41,7 +40,7 @@
   </main>
 
   <footer class="app-footer">
-    <small>&copy; {{ currentYear }} - Juego Encerrando parcelas - Fundapromat - </small>
+    <small>&copy; {{ currentYear }} - Juego de parcelas de granja</small>
     <a href="https://docs.google.com/presentation/d/1a893t9SWsrmtRKGFjBaqJ9d5xkxk98TVUans4RmArsQ/edit?slide=id.gf1190ce234_0_0#slide=id.gf1190ce234_0_0" target="_blank">
     Ver presentación
     </a>

@@ -160,9 +160,9 @@ export class World3dComponent implements AfterViewInit, OnDestroy {
 
   private createIslands(): void {
     const THREE = window.THREE;
-    this.createIsland('Strategy Island', new THREE.Vector3(-10, 1, 0), '#34d399', '/games/othello');
-    this.createIsland('Logic Island', new THREE.Vector3(0, 2.5, -8), '#60a5fa', '/games/panda4x4');
-    this.createIsland('Color Island', new THREE.Vector3(11, 1.4, 2), '#f472b6', '/games/colores');
+    this.createIsland('Parcela Estratégica', new THREE.Vector3(-10, 1, 0), '#34d399', '/games/othello');
+    this.createIsland('Parcela Lógica', new THREE.Vector3(0, 2.5, -8), '#60a5fa', '/games/panda4x4');
+    this.createIsland('Parcela de Pigmentos', new THREE.Vector3(11, 1.4, 2), '#f472b6', '/games/colores');
   }
 
   private createIsland(name: string, position: any, portalColor: string, route: PortalRoute): void {

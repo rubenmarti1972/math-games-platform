@@ -16,7 +16,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+  background: linear-gradient(135deg, #3f6212 0%, #4d7c0f 55%, #365314 100%);
   position: relative;
 }
 
@@ -40,7 +40,7 @@
 
 /* ===== Header Styles ===== */
 .slide-header {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%);
   padding: 2rem 4rem;
   display: flex;
   align-items: center;
@@ -850,7 +850,7 @@ app-color-triangle {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%);
   color: white;
   font-size: 1.2rem;
   font-weight: 900;

@@ -7,9 +7,9 @@
   justify-content: flex-start;
 }
 .controls-panel button {
-  background: #5E5DF0;
+  background: linear-gradient(135deg, #65a30d, #4d7c0f);
   border-radius: 999px;
-  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-shadow: rgba(77, 124, 15, 0.45) 0 10px 20px -10px;
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
@@ -28,7 +28,7 @@
   border: 0;
 }
 .controls-panel button:hover {
-   background: #2121df
+   background: linear-gradient(135deg, #4d7c0f, #365314)
 }
 
 

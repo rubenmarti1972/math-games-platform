@@ -3,7 +3,7 @@
 }
 
 .show-instructions {
-  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  background: linear-gradient(135deg, #65a30d, #4d7c0f);
   color: #f8fafc;
   padding: 10px 20px;
   border-radius: 10px;
@@ -12,7 +12,7 @@
   margin: 20px auto;
   display: block;
   cursor: pointer;
-  border: 1px solid rgba(191, 219, 254, 0.45);
+  border: 1px solid rgba(217, 249, 157, 0.45);
 }
 
 .show-instructions:hover {
@@ -59,7 +59,7 @@
 }
 
 button {
-  background: #4f46e5;
+  background: #4d7c0f;
   border-radius: 999px;
   color: #ffffff;
   cursor: pointer;
@@ -72,15 +72,15 @@ button {
 }
 
 button:hover {
-  background: #3730a3;
+  background: #365314;
 }
 
 .btn-secondary {
-  background-color: #e2e8f0;
+  background-color: #ecfccb;
   color: #0f172a;
 }
 
 .btn-primary {
-  background-color: #4f46e5;
+  background-color: #4d7c0f;
   color: white;
 }

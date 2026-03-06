@@ -1,57 +1,54 @@
 /* src/app/app.component.scss */
 
-/* 1. Variables globales */
-:root {        /* ancho del logo */
-  --header-padding: 0.5rem;
+:root {
+  --header-padding: 0.6rem;
   --cell-gap: 1rem;
   --scoreboard-width: 120px;
+  --farm-bg-dark: #1f2a1b;
+  --farm-bg-mid: #2f4a24;
+  --farm-bg-light: #4d7c0f;
+  --farm-accent: #a3e635;
+  --farm-accent-soft: #ecfccb;
+  --farm-surface: #f7fee7;
+  --farm-text: #1f2937;
 }
 
-/* 2. Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 3. Contenedor principal */
 .app-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, var(--farm-bg-dark), var(--farm-bg-mid));
 }
 
-/* 4. Header con CSS Grid */
 .app-header {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr;
   align-items: center;
   padding: var(--header-padding);
-  background-color: white;
-  color: black;
-  border-bottom: 2px solid black;
+  background: linear-gradient(90deg, #3f6212, #4d7c0f);
+  color: #f7fee7;
+  border-bottom: 2px solid #365314;
 }
 
-/* 4.1 Logo en columna 1 */
-.logo {
-  grid-column: 1;
-}
-
-/* 4.2 Título centrado en columna 2 */
 .title {
-  grid-column: 2;
+  grid-column: 1;
   justify-self: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
+  text-align: center;
 }
 
-/* 4.3 Spacer vacío en columna 3 */
 .spacer {
-  grid-column: 3;
+  display: none;
 }
 
-/* 5. Área principal */
 .app-main {
   flex: 1;
   display: flex;
@@ -59,46 +56,47 @@
   padding: 1rem;
 }
 
-/* 6.1 Ajuste ancho scoreboard */
 app-score-board {
   width: var(--scoreboard-width);
 }
 
-/* 6.2 Tablero ocupa resto */
 app-game-board {
   flex: 1;
 }
 
-/* 7. Footer */
 .app-footer {
-  background-color: white;
-  color: black;
+  background: #365314;
+  color: #ecfccb;
   text-align: center;
   padding: var(--header-padding);
-  border-top: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #1a2e05;
+}
+
+.app-footer a {
+  color: #d9f99d;
 }
 
 .side-panel {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 200px;
+  width: 240px;
 }
-
 
 .game-area {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  height: 100%;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  align-items: start;
   gap: var(--cell-gap);
+  width: min(1280px, 100%);
+  margin: 0 auto;
 }
 
 .board-panel {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #97b5d3, #c2ccd1, #d0d0e2);
-  border-radius: 10px;
+  min-height: 72vh;
+  background: linear-gradient(180deg, #3f6212, #365314);
+  border-radius: 14px;
   padding: 1rem;
   display: flex;
   justify-content: center;
@@ -107,7 +105,7 @@ app-game-board {
 
 .mode-selector {
   display: flex;
-  flex-direction: column; /* Para que en side-panel quede vertical */
+  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
   margin: 0.5rem 0;
@@ -115,7 +113,6 @@ app-game-board {
   width: 100%;
   margin-inline: auto;
 }
-
 
 .mode-selector label {
   display: flex;
@@ -128,9 +125,11 @@ app-game-board {
   font-size: 0.8rem;
   user-select: none;
   padding: 0.3rem 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  border: 1px solid #84cc16;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: #f7fee7;
+  color: #365314;
 }
 
 .mode-selector input[type='radio'] {
@@ -138,104 +137,44 @@ app-game-board {
 }
 
 .mode-selector label:hover {
-  opacity: 0.85;
-  border-color: #888;
-  background-color: #f9f9f9;
+  border-color: #4d7c0f;
+  background-color: #ecfccb;
 }
 
 .mode-selector i {
-  font-size: 0.6rem; /* ícono más pequeño */
+  font-size: 0.7rem;
 }
 
 .mode-selector label.active {
-  border-color: #007bff;
-  background-color: #e6f0ff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #365314;
+  background-color: #d9f99d;
+  box-shadow: 0 0 0 2px rgba(77, 124, 15, 0.25);
   font-weight: bold;
 }
 
-/* Responsive específico para pantallas chicas */
-@media (max-width: 500px) {
-  .mode-selector {
-    flex-direction: row; /* En mobile horizontal, más compacto */
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .mode-selector label {
-    flex: 1 1 auto;
-    justify-content: center;
-    font-size: 0.5rem;
-    padding: 0.2rem 0.4rem;
-  }
-
-  .mode-selector i {
-    font-size: 0.5rem;
-  }
-
-  .mode-selector label.active {
-  border-color: #007bff;
-  background-color: #e6f0ff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  font-weight: bold;
-}
-
-}
-
-
-/* 🎁 Responsive para móvil */
 @media (max-width: 768px) {
   .app-header {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr;
     padding: 0.3rem;
   }
 
   .title {
-    font-size: 1.8rem; /* mucho más pequeño */
-  }
-
-  .logo {
-    width: 50px;
-    height: auto;
-  }
-
-  .mode-selector {
-    gap: 0.8rem;
-    margin: 0.5rem 0;
-    flex-wrap: wrap;
-  }
-
-  .mode-selector label {
-    font-size: 0.9rem;
-    padding: 0.3rem 0.6rem;
-    gap: 0.3rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-
-  .mode-selector i {
-    font-size: 1rem;
+    font-size: 1.7rem;
   }
 
   .side-panel {
     width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
   }
 
   .game-area {
-    grid-template-columns: 1fr; /* tablero abajo de los controles */
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
     gap: 0.8rem;
   }
 
   .board-panel {
+    min-height: 62vh;
     padding: 0.5rem;
-    border-radius: 6px;
-    width: 100%;
-    height: auto;
+    border-radius: 10px;
   }
 
   app-score-board {
@@ -247,7 +186,3 @@ app-game-board {
     padding: 0.3rem;
   }
 }
-
-
-
-
