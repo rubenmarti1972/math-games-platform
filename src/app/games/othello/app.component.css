@@ -108,14 +108,21 @@ app-game-board {
 .mode-selector {
   display: flex;
   flex-direction: column; /* Para que en side-panel quede vertical */
+  align-items: center;
   gap: 0.5rem;
   margin: 0.5rem 0;
   padding: 0 0.5rem;
+  width: 100%;
+  margin-inline: auto;
 }
+
 
 .mode-selector label {
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
   gap: 0.4rem;
   cursor: pointer;
   font-size: 0.8rem;
