@@ -485,7 +485,7 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    this.renderer.setSize(width, height, false);
+    this.renderer.setSize(width, height, true);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
   }
