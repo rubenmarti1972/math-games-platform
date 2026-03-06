@@ -1,5 +1,7 @@
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .winner-banner {
@@ -16,6 +18,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: min(100%, 980px);
+  margin-inline: auto;
   min-height: 60vh;
   background: linear-gradient(180deg, #0b1220, #0f172a);
   border-radius: 1rem;

@@ -84,9 +84,12 @@ app-game-board {
 
 .game-area {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(220px, 320px) 1fr;
   height: 100%;
   gap: var(--cell-gap);
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
 }
 
 .board-panel {
@@ -238,7 +241,6 @@ app-game-board {
     padding: 0.3rem;
   }
 }
-
 
 
 
