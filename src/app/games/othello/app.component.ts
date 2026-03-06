@@ -30,7 +30,7 @@ import { InstructionsComponent } from './pages/instructions/instructions.compone
 export class AppComponent {
 
    mode: 'pvp' | 'cpu' = 'pvp';
-  title = 'Encerrando colores';
+  title = 'Encerrando parcelas';
   currentYear = new Date().getFullYear();
   constructor(public modeService: GameModeService) {}
 
