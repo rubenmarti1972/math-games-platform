@@ -6,8 +6,10 @@
   <main class="app-main">
     <div class="game-area">
       <div class="side-panel">
+        <!-- 👇 Este mode-selector es lo que vamos a estilizar -->
         <div class="mode-selector" role="radiogroup" aria-label="Modo de juego">
           <label class="mode-option mode-option--pvp" [class.active]="mode === 'pvp'" title="Cuadrilla vs Cuadrilla">
+
             <input type="radio" name="mode" (change)="setMode('pvp')" [checked]="mode === 'pvp'" />
             <i class="fas fa-user mode-icon mode-icon--red" aria-hidden="true"></i>
             <i class="fas fa-user mode-icon mode-icon--green" aria-hidden="true"></i>
