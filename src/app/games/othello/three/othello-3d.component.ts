@@ -57,31 +57,41 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
 
   private readonly tileGeometry = new THREE.BoxGeometry(0.95, 0.18, 0.95);
   private readonly pedestalGeometry = new THREE.CylinderGeometry(0.38, 0.38, 0.12, 28);
-  private readonly bodyGeometry = new THREE.CylinderGeometry(0.2, 0.24, 0.3, 18);
-  private readonly headGeometry = new THREE.SphereGeometry(0.14, 18, 14);
-  private readonly hatGeometry = new THREE.ConeGeometry(0.16, 0.22, 16);
-  private readonly strawHatGeometry = new THREE.CylinderGeometry(0.18, 0.18, 0.04, 16);
-  private readonly backpackGeometry = new THREE.BoxGeometry(0.12, 0.16, 0.09);
+  private readonly torsoGeometry = new THREE.CylinderGeometry(0.18, 0.22, 0.26, 18);
+  private readonly apronGeometry = new THREE.CylinderGeometry(0.2, 0.22, 0.14, 18);
+  private readonly armGeometry = new THREE.BoxGeometry(0.07, 0.2, 0.07);
+  private readonly headGeometry = new THREE.SphereGeometry(0.13, 16, 14);
+  private readonly farmerHatGeometry = new THREE.CylinderGeometry(0.2, 0.16, 0.06, 18);
+  private readonly farmerHatTopGeometry = new THREE.CylinderGeometry(0.11, 0.1, 0.12, 18);
+  private readonly scarfGeometry = new THREE.TorusGeometry(0.115, 0.025, 8, 18);
+  private readonly backpackGeometry = new THREE.BoxGeometry(0.11, 0.15, 0.08);
+  private readonly toolHandleGeometry = new THREE.CylinderGeometry(0.015, 0.015, 0.23, 8);
+  private readonly toolHeadGeometry = new THREE.BoxGeometry(0.1, 0.04, 0.03);
 
   private readonly tileMaterialA = new THREE.MeshStandardMaterial({ color: 0x295c3f, roughness: 0.68, metalness: 0.08 });
   private readonly tileMaterialB = new THREE.MeshStandardMaterial({ color: 0x225136, roughness: 0.68, metalness: 0.08 });
-  private readonly blackPedestalMaterial = new THREE.MeshStandardMaterial({ color: 0x2f2419, roughness: 0.45, metalness: 0.12 });
-  private readonly whitePedestalMaterial = new THREE.MeshStandardMaterial({ color: 0xe4cfab, roughness: 0.4, metalness: 0.06 });
+  private readonly blackPedestalMaterial = new THREE.MeshStandardMaterial({ color: 0x4a2f1b, roughness: 0.45, metalness: 0.12 });
+  private readonly whitePedestalMaterial = new THREE.MeshStandardMaterial({ color: 0xe6d2b1, roughness: 0.4, metalness: 0.06 });
   private readonly dualPedestalMaterial = new THREE.MeshStandardMaterial({ color: 0x7c3aed, roughness: 0.38, metalness: 0.22 });
 
-  private readonly darkFarmerBodyMaterial = new THREE.MeshStandardMaterial({ color: 0x7f1d1d, roughness: 0.5, metalness: 0.08 });
-  private readonly darkFarmerHeadMaterial = new THREE.MeshStandardMaterial({ color: 0xf3cfa4, roughness: 0.65, metalness: 0.03 });
-  private readonly darkFarmerHatMaterial = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.45, metalness: 0.25 });
-  private readonly darkFarmerPackMaterial = new THREE.MeshStandardMaterial({ color: 0x365314, roughness: 0.6, metalness: 0.05 });
+  private readonly noxBodyMaterial = new THREE.MeshStandardMaterial({ color: 0x9f1239, roughness: 0.5, metalness: 0.08 });
+  private readonly noxApronMaterial = new THREE.MeshStandardMaterial({ color: 0x1e3a8a, roughness: 0.5, metalness: 0.06 });
+  private readonly noxHatMaterial = new THREE.MeshStandardMaterial({ color: 0x92400e, roughness: 0.55, metalness: 0.04 });
+  private readonly noxPackMaterial = new THREE.MeshStandardMaterial({ color: 0x365314, roughness: 0.62, metalness: 0.04 });
 
-  private readonly lightFarmerBodyMaterial = new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.5, metalness: 0.08 });
-  private readonly lightFarmerHeadMaterial = new THREE.MeshStandardMaterial({ color: 0xffddb8, roughness: 0.65, metalness: 0.03 });
-  private readonly lightFarmerHatMaterial = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.52, metalness: 0.07 });
-  private readonly lightFarmerPackMaterial = new THREE.MeshStandardMaterial({ color: 0x075985, roughness: 0.6, metalness: 0.05 });
+  private readonly liraBodyMaterial = new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.5, metalness: 0.08 });
+  private readonly liraApronMaterial = new THREE.MeshStandardMaterial({ color: 0xbe123c, roughness: 0.5, metalness: 0.06 });
+  private readonly liraHatMaterial = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.55, metalness: 0.04 });
+  private readonly liraPackMaterial = new THREE.MeshStandardMaterial({ color: 0x075985, roughness: 0.62, metalness: 0.04 });
+
+  private readonly skinNoxMaterial = new THREE.MeshStandardMaterial({ color: 0xf0c9a1, roughness: 0.7, metalness: 0.02 });
+  private readonly skinLiraMaterial = new THREE.MeshStandardMaterial({ color: 0xffddb9, roughness: 0.7, metalness: 0.02 });
+  private readonly toolMetalMaterial = new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.35, metalness: 0.45 });
+  private readonly toolWoodMaterial = new THREE.MeshStandardMaterial({ color: 0x8b5e34, roughness: 0.76, metalness: 0.03 });
 
   private readonly propWoodMaterial = new THREE.MeshStandardMaterial({ color: 0x7c4a26, roughness: 0.75, metalness: 0.02 });
   private readonly propGrassMaterial = new THREE.MeshStandardMaterial({ color: 0x3f7c36, roughness: 0.8, metalness: 0.01 });
-  private readonly propFlagMaterialDark = new THREE.MeshStandardMaterial({ color: 0x7f1d1d, roughness: 0.6, metalness: 0.04 });
+  private readonly propFlagMaterialDark = new THREE.MeshStandardMaterial({ color: 0x9f1239, roughness: 0.6, metalness: 0.04 });
   private readonly propFlagMaterialLight = new THREE.MeshStandardMaterial({ color: 0x0f766e, roughness: 0.6, metalness: 0.04 });
 
   constructor(private readonly gameService: GameService, private readonly zone: NgZone) {}
@@ -107,11 +117,16 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
     [
       this.tileGeometry,
       this.pedestalGeometry,
-      this.bodyGeometry,
+      this.torsoGeometry,
+      this.apronGeometry,
+      this.armGeometry,
       this.headGeometry,
-      this.hatGeometry,
-      this.strawHatGeometry,
+      this.farmerHatGeometry,
+      this.farmerHatTopGeometry,
+      this.scarfGeometry,
       this.backpackGeometry,
+      this.toolHandleGeometry,
+      this.toolHeadGeometry,
     ].forEach((geometry) => geometry.dispose());
 
     [
@@ -120,14 +135,18 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
       this.blackPedestalMaterial,
       this.whitePedestalMaterial,
       this.dualPedestalMaterial,
-      this.darkFarmerBodyMaterial,
-      this.darkFarmerHeadMaterial,
-      this.darkFarmerHatMaterial,
-      this.darkFarmerPackMaterial,
-      this.lightFarmerBodyMaterial,
-      this.lightFarmerHeadMaterial,
-      this.lightFarmerHatMaterial,
-      this.lightFarmerPackMaterial,
+      this.noxBodyMaterial,
+      this.noxApronMaterial,
+      this.noxHatMaterial,
+      this.noxPackMaterial,
+      this.liraBodyMaterial,
+      this.liraApronMaterial,
+      this.liraHatMaterial,
+      this.liraPackMaterial,
+      this.skinNoxMaterial,
+      this.skinLiraMaterial,
+      this.toolMetalMaterial,
+      this.toolWoodMaterial,
       this.propWoodMaterial,
       this.propGrassMaterial,
       this.propFlagMaterialDark,
@@ -294,7 +313,7 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
 
         const existing = this.pieceMeshes.get(key);
         if (!existing) {
-          const piece = this.createCharacterPiece(state);
+          const piece = this.createFarmerPiece(state);
           piece.position.set(this.toBoardX(col), 0.12, this.toBoardZ(row));
           this.pieceGroup.add(piece);
           this.pieceMeshes.set(key, piece);
@@ -315,7 +334,7 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  private createCharacterPiece(state: CellState): any {
+  private createFarmerPiece(state: CellState): any {
     const root = new THREE.Group();
 
     const pedestal = new THREE.Mesh(this.pedestalGeometry, this.materialForPedestal(state));
@@ -323,32 +342,77 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
     pedestal.position.y = 0.04;
     pedestal.userData = { role: 'pedestal' };
 
-    const body = new THREE.Mesh(this.bodyGeometry, this.darkFarmerBodyMaterial);
-    body.position.y = 0.23;
-    body.userData = { role: 'body' };
+    const torso = new THREE.Mesh(this.torsoGeometry, this.noxBodyMaterial);
+    torso.position.y = 0.23;
+    torso.userData = { role: 'torso' };
 
-    const head = new THREE.Mesh(this.headGeometry, this.darkFarmerHeadMaterial);
-    head.position.y = 0.47;
+    const apron = new THREE.Mesh(this.apronGeometry, this.noxApronMaterial);
+    apron.position.y = 0.14;
+    apron.userData = { role: 'apron' };
+
+    const head = new THREE.Mesh(this.headGeometry, this.skinNoxMaterial);
+    head.position.y = 0.43;
     head.userData = { role: 'head' };
 
-    const hat = new THREE.Mesh(this.hatGeometry, this.darkFarmerHatMaterial);
-    hat.position.y = 0.62;
-    hat.userData = { role: 'hat' };
+    const hatBrim = new THREE.Mesh(this.farmerHatGeometry, this.noxHatMaterial);
+    hatBrim.position.y = 0.54;
+    hatBrim.userData = { role: 'hat-brim' };
 
-    const backpack = new THREE.Mesh(this.backpackGeometry, this.darkFarmerPackMaterial);
-    backpack.position.set(0, 0.27, -0.15);
+    const hatTop = new THREE.Mesh(this.farmerHatTopGeometry, this.noxHatMaterial);
+    hatTop.position.y = 0.62;
+    hatTop.userData = { role: 'hat-top' };
+
+    const scarf = new THREE.Mesh(this.scarfGeometry, this.noxApronMaterial);
+    scarf.position.y = 0.34;
+    scarf.rotation.x = Math.PI / 2;
+    scarf.userData = { role: 'scarf' };
+
+    const leftArm = new THREE.Mesh(this.armGeometry, this.skinNoxMaterial);
+    leftArm.position.set(-0.18, 0.24, 0);
+    leftArm.rotation.z = 0.32;
+    leftArm.userData = { role: 'arm-left' };
+
+    const rightArm = new THREE.Mesh(this.armGeometry, this.skinNoxMaterial);
+    rightArm.position.set(0.18, 0.24, 0);
+    rightArm.rotation.z = -0.22;
+    rightArm.userData = { role: 'arm-right' };
+
+    const backpack = new THREE.Mesh(this.backpackGeometry, this.noxPackMaterial);
+    backpack.position.set(0, 0.24, -0.15);
     backpack.userData = { role: 'pack' };
 
-    root.add(pedestal, body, head, hat, backpack);
-    root.userData = { state };
+    const toolHandle = new THREE.Mesh(this.toolHandleGeometry, this.toolWoodMaterial);
+    toolHandle.position.set(0.25, 0.2, 0.02);
+    toolHandle.rotation.z = -0.3;
+    toolHandle.userData = { role: 'tool-handle' };
 
-    this.applyCharacterStyle(root, state);
+    const toolHead = new THREE.Mesh(this.toolHeadGeometry, this.toolMetalMaterial);
+    toolHead.position.set(0.3, 0.31, 0.03);
+    toolHead.rotation.z = -0.3;
+    toolHead.userData = { role: 'tool-head' };
+
+    root.add(
+      pedestal,
+      torso,
+      apron,
+      head,
+      hatBrim,
+      hatTop,
+      scarf,
+      leftArm,
+      rightArm,
+      backpack,
+      toolHandle,
+      toolHead,
+    );
+
+    this.applyFarmerStyle(root, state);
     return root;
   }
 
   private queueFlip(piece: any, from: CellState, to: CellState): void {
     if (from === 'empty' || to === 'empty') {
-      this.applyCharacterStyle(piece, to);
+      this.applyFarmerStyle(piece, to);
       return;
     }
 
@@ -362,39 +426,38 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  private applyCharacterStyle(piece: any, state: CellState): void {
-    piece.userData.state = state;
+  private applyFarmerStyle(piece: any, state: CellState): void {
+    const isWhiteTeam = state === 'white';
+    const isDual = state === 'dual';
 
     piece.children.forEach((part: any) => {
       switch (part.userData.role) {
         case 'pedestal':
           part.material = this.materialForPedestal(state);
           break;
-        case 'body':
-          part.material = state === 'white' ? this.lightFarmerBodyMaterial : this.darkFarmerBodyMaterial;
+        case 'torso':
+          part.material = isDual ? this.dualPedestalMaterial : (isWhiteTeam ? this.liraBodyMaterial : this.noxBodyMaterial);
+          break;
+        case 'apron':
+        case 'scarf':
+          part.material = isDual ? this.dualPedestalMaterial : (isWhiteTeam ? this.liraApronMaterial : this.noxApronMaterial);
           break;
         case 'head':
-          part.material = state === 'white' ? this.lightFarmerHeadMaterial : this.darkFarmerHeadMaterial;
+        case 'arm-left':
+        case 'arm-right':
+          part.material = isWhiteTeam ? this.skinLiraMaterial : this.skinNoxMaterial;
           break;
-        case 'hat':
-          part.geometry = state === 'white' ? this.strawHatGeometry : this.hatGeometry;
-          part.material = state === 'white' ? this.lightFarmerHatMaterial : this.darkFarmerHatMaterial;
-          part.position.y = state === 'white' ? 0.58 : 0.62;
+        case 'hat-brim':
+        case 'hat-top':
+          part.material = isDual ? this.dualPedestalMaterial : (isWhiteTeam ? this.liraHatMaterial : this.noxHatMaterial);
           break;
         case 'pack':
-          part.material = state === 'white' ? this.lightFarmerPackMaterial : this.darkFarmerPackMaterial;
+          part.material = isDual ? this.dualPedestalMaterial : (isWhiteTeam ? this.liraPackMaterial : this.noxPackMaterial);
           break;
         default:
           break;
       }
     });
-
-    if (state === 'dual') {
-      const body = piece.children.find((part: any) => part.userData.role === 'body');
-      if (body) {
-        body.material = this.dualPedestalMaterial;
-      }
-    }
   }
 
   private materialForPedestal(state: CellState): any {
@@ -432,7 +495,7 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
         flip.piece.rotation.x = Math.PI * progress;
 
         if (!flip.switched && progress >= 0.5) {
-          this.applyCharacterStyle(flip.piece, flip.to);
+          this.applyFarmerStyle(flip.piece, flip.to);
           flip.switched = true;
         }
 
