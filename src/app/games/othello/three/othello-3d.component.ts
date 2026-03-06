@@ -56,23 +56,19 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
   private activeFlips: FlipAnimation[] = [];
 
   private readonly tileGeometry = new THREE.BoxGeometry(0.95, 0.18, 0.95);
-  private readonly pedestalGeometry = new THREE.CylinderGeometry(0.38, 0.38, 0.12, 28);
   private readonly torsoGeometry = new THREE.CylinderGeometry(0.18, 0.22, 0.26, 18);
   private readonly apronGeometry = new THREE.CylinderGeometry(0.2, 0.22, 0.14, 18);
   private readonly armGeometry = new THREE.BoxGeometry(0.07, 0.2, 0.07);
   private readonly headGeometry = new THREE.SphereGeometry(0.13, 16, 14);
   private readonly farmerHatGeometry = new THREE.CylinderGeometry(0.2, 0.16, 0.06, 18);
   private readonly farmerHatTopGeometry = new THREE.CylinderGeometry(0.11, 0.1, 0.12, 18);
-  private readonly scarfGeometry = new THREE.TorusGeometry(0.115, 0.025, 8, 18);
   private readonly backpackGeometry = new THREE.BoxGeometry(0.11, 0.15, 0.08);
   private readonly toolHandleGeometry = new THREE.CylinderGeometry(0.015, 0.015, 0.23, 8);
   private readonly toolHeadGeometry = new THREE.BoxGeometry(0.1, 0.04, 0.03);
 
   private readonly tileMaterialA = new THREE.MeshStandardMaterial({ color: 0x295c3f, roughness: 0.68, metalness: 0.08 });
   private readonly tileMaterialB = new THREE.MeshStandardMaterial({ color: 0x225136, roughness: 0.68, metalness: 0.08 });
-  private readonly blackPedestalMaterial = new THREE.MeshStandardMaterial({ color: 0x4a2f1b, roughness: 0.45, metalness: 0.12 });
-  private readonly whitePedestalMaterial = new THREE.MeshStandardMaterial({ color: 0xe6d2b1, roughness: 0.4, metalness: 0.06 });
-  private readonly dualPedestalMaterial = new THREE.MeshStandardMaterial({ color: 0x7c3aed, roughness: 0.38, metalness: 0.22 });
+  private readonly dualTeamMaterial = new THREE.MeshStandardMaterial({ color: 0x7c3aed, roughness: 0.38, metalness: 0.22 });
 
   private readonly noxBodyMaterial = new THREE.MeshStandardMaterial({ color: 0x9f1239, roughness: 0.5, metalness: 0.08 });
   private readonly noxApronMaterial = new THREE.MeshStandardMaterial({ color: 0x1e3a8a, roughness: 0.5, metalness: 0.06 });
@@ -116,14 +112,12 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
 
     [
       this.tileGeometry,
-      this.pedestalGeometry,
       this.torsoGeometry,
       this.apronGeometry,
       this.armGeometry,
       this.headGeometry,
       this.farmerHatGeometry,
       this.farmerHatTopGeometry,
-      this.scarfGeometry,
       this.backpackGeometry,
       this.toolHandleGeometry,
       this.toolHeadGeometry,
@@ -132,9 +126,7 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
     [
       this.tileMaterialA,
       this.tileMaterialB,
-      this.blackPedestalMaterial,
-      this.whitePedestalMaterial,
-      this.dualPedestalMaterial,
+      this.dualTeamMaterial,
       this.noxBodyMaterial,
       this.noxApronMaterial,
       this.noxHatMaterial,
@@ -314,7 +306,7 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
         const existing = this.pieceMeshes.get(key);
         if (!existing) {
           const piece = this.createFarmerPiece(state);
-          piece.position.set(this.toBoardX(col), 0.12, this.toBoardZ(row));
+          piece.position.set(this.toBoardX(col), 0.05, this.toBoardZ(row));
           this.pieceGroup.add(piece);
           this.pieceMeshes.set(key, piece);
           continue;
@@ -337,11 +329,6 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
   private createFarmerPiece(state: CellState): any {
     const root = new THREE.Group();
 
-    const pedestal = new THREE.Mesh(this.pedestalGeometry, this.materialForPedestal(state));
-    pedestal.rotation.x = Math.PI / 2;
-    pedestal.position.y = 0.04;
-    pedestal.userData = { role: 'pedestal' };
-
     const torso = new THREE.Mesh(this.torsoGeometry, this.noxBodyMaterial);
     torso.position.y = 0.23;
     torso.userData = { role: 'torso' };
@@ -361,11 +348,6 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
     const hatTop = new THREE.Mesh(this.farmerHatTopGeometry, this.noxHatMaterial);
     hatTop.position.y = 0.62;
     hatTop.userData = { role: 'hat-top' };
-
-    const scarf = new THREE.Mesh(this.scarfGeometry, this.noxApronMaterial);
-    scarf.position.y = 0.34;
-    scarf.rotation.x = Math.PI / 2;
-    scarf.userData = { role: 'scarf' };
 
     const leftArm = new THREE.Mesh(this.armGeometry, this.skinNoxMaterial);
     leftArm.position.set(-0.18, 0.24, 0);
@@ -392,13 +374,11 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
     toolHead.userData = { role: 'tool-head' };
 
     root.add(
-      pedestal,
       torso,
       apron,
       head,
       hatBrim,
       hatTop,
-      scarf,
       leftArm,
       rightArm,
       backpack,
@@ -432,15 +412,11 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
 
     piece.children.forEach((part: any) => {
       switch (part.userData.role) {
-        case 'pedestal':
-          part.material = this.materialForPedestal(state);
-          break;
         case 'torso':
-          part.material = isDual ? this.dualPedestalMaterial : (isWhiteTeam ? this.liraBodyMaterial : this.noxBodyMaterial);
+          part.material = isDual ? this.dualTeamMaterial : (isWhiteTeam ? this.liraBodyMaterial : this.noxBodyMaterial);
           break;
         case 'apron':
-        case 'scarf':
-          part.material = isDual ? this.dualPedestalMaterial : (isWhiteTeam ? this.liraApronMaterial : this.noxApronMaterial);
+          part.material = isDual ? this.dualTeamMaterial : (isWhiteTeam ? this.liraApronMaterial : this.noxApronMaterial);
           break;
         case 'head':
         case 'arm-left':
@@ -449,28 +425,15 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
           break;
         case 'hat-brim':
         case 'hat-top':
-          part.material = isDual ? this.dualPedestalMaterial : (isWhiteTeam ? this.liraHatMaterial : this.noxHatMaterial);
+          part.material = isDual ? this.dualTeamMaterial : (isWhiteTeam ? this.liraHatMaterial : this.noxHatMaterial);
           break;
         case 'pack':
-          part.material = isDual ? this.dualPedestalMaterial : (isWhiteTeam ? this.liraPackMaterial : this.noxPackMaterial);
+          part.material = isDual ? this.dualTeamMaterial : (isWhiteTeam ? this.liraPackMaterial : this.noxPackMaterial);
           break;
         default:
           break;
       }
     });
-  }
-
-  private materialForPedestal(state: CellState): any {
-    switch (state) {
-      case 'black':
-        return this.blackPedestalMaterial;
-      case 'white':
-        return this.whitePedestalMaterial;
-      case 'dual':
-        return this.dualPedestalMaterial;
-      default:
-        return this.blackPedestalMaterial;
-    }
   }
 
   private removePiece(key: string): void {
