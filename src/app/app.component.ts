@@ -33,7 +33,7 @@ interface MissionMeta {
             <strong>{{ elapsedTime() }}</strong>
           </div>
           <div class="stat">
-            <span>⚡ Energía mental</span>
+            <span>🎯 Progreso de misión</span>
             <strong>{{ currentMission().energy }}%</strong>
           </div>
           <div class="progress-track" aria-hidden="true">
