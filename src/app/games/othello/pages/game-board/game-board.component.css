@@ -1,11 +1,13 @@
 :host {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
 .winner-banner {
-  margin: 0 0 0.65rem;
+  width: min(100%, 980px);
+  margin: 0 auto 0.65rem;
   padding: 0.65rem 0.9rem;
   border-radius: 0.75rem;
   background: linear-gradient(135deg, #111827, #1f2937);
@@ -18,6 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   width: min(100%, 980px);
   margin-inline: auto;
   min-height: 60vh;
