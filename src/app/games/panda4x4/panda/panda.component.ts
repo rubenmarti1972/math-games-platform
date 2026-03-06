@@ -91,9 +91,9 @@ export class PandaComponent implements OnInit {
   // Si está completo, validar solución
   if (this.game.isSolved()) {
     this.stopTimer();
-    this.message = `🎉 ¡Correcto! Completado en ${this.seconds}s`;
+    this.message = `🎉 ¡Excelente cosecha! Completado en ${this.seconds}s`;
   } else {
-    this.message = `❌ Inténtalo de nuevo`;
+    this.message = `❌ La cosecha no coincide, inténtalo de nuevo`;
   }
 }
 
