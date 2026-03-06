@@ -3,7 +3,7 @@
 }
 
 .show-instructions {
-  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  background: linear-gradient(135deg, #0f766e, #1d4ed8);
   color: #f8fafc;
   padding: 10px 20px;
   border-radius: 10px;
@@ -12,7 +12,7 @@
   margin: 20px auto;
   display: block;
   cursor: pointer;
-  border: 1px solid rgba(191, 219, 254, 0.45);
+  border: 1px solid rgba(186, 230, 253, 0.45);
 }
 
 .show-instructions:hover {
@@ -59,7 +59,7 @@
 }
 
 button {
-  background: #4f46e5;
+  background: linear-gradient(135deg, #0f766e, #1d4ed8);
   border-radius: 999px;
   color: #ffffff;
   cursor: pointer;
@@ -67,20 +67,20 @@ button {
   font-size: 14px;
   font-weight: 700;
   padding: 8px 16px;
-  border: 0;
+  border: 1px solid rgba(186, 230, 253, 0.45);
   margin: 0 8px;
 }
 
 button:hover {
-  background: #3730a3;
+  filter: brightness(1.08);
 }
 
 .btn-secondary {
-  background-color: #e2e8f0;
-  color: #0f172a;
+  background: linear-gradient(135deg, #334155, #1e293b);
+  color: #e2e8f0;
 }
 
 .btn-primary {
-  background-color: #4f46e5;
+  background: linear-gradient(135deg, #0f766e, #1d4ed8);
   color: white;
 }

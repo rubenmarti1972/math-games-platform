@@ -1,35 +1,35 @@
 .controls-panel {
   display: flex;
-  flex-direction: row;       /* ← LOS ALINEA EN FILA */
-  gap: 0.5rem;               /* ← espacio entre botones */
-  flex-wrap: wrap;           /* ← permite que salten de línea si hay poco espacio */
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   padding: 0.5rem;
   justify-content: flex-start;
 }
+
 .controls-panel button {
-  background: #5E5DF0;
+  background: linear-gradient(135deg, #0f766e, #1d4ed8);
   border-radius: 999px;
-  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-shadow: 0 10px 18px -10px rgba(15, 118, 110, 0.8);
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #f8fafc;
   cursor: pointer;
-  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
-  opacity: 1;
-  outline: 0 solid transparent;
   padding: 8px 18px;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   width: fit-content;
   word-break: break-word;
-  border: 0;
+  border: 1px solid rgba(186, 230, 253, 0.45);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 }
+
 .controls-panel button:hover {
-   background: #2121df
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px -10px rgba(30, 64, 175, 0.9);
 }
-
-
-
