@@ -3,24 +3,38 @@
 
   <aside class="world3d-overlay">
     <p class="eyebrow">MUNDO GRANJERO MATEMÁTICO</p>
-    <h1>Elige una parcela y entra al portón</h1>
+    <h1>Elige un juego desde el centro</h1>
     <p>
-      Explora la granja, usa el mouse para orbitar, hacer zoom y desplazarte. Haz clic en un portón para abrir
-      un juego.
+      Explora la granja en 3D y, si prefieres acceso rápido, usa estas tarjetas para entrar directamente.
     </p>
-    <ul>
-      <li>
-        <strong>Parcela Estratégica</strong> → Othello
+
+    <div class="game-cards">
+      <article class="portal-card">
+        <img src="assets/games/othello.svg" alt="Vista del reto 1 de Othello" />
+        <div class="portal-card__content">
+          <strong>Othello · Reto 1</strong>
+          <span>Canvas estratégico</span>
+        </div>
         <button type="button" (click)="navigateTo('/games/othello')">Entrar</button>
-      </li>
-      <li>
-        <strong>Parcela Lógica</strong> → Panda 4x4
+      </article>
+
+      <article class="portal-card">
+        <img src="assets/games/panda4x4.svg" alt="Juego Panda 4x4 con cubo lógico" />
+        <div class="portal-card__content">
+          <strong>Panda 4x4</strong>
+          <span>Cubo y lógica espacial</span>
+        </div>
         <button type="button" (click)="navigateTo('/games/panda4x4')">Entrar</button>
-      </li>
-      <li>
-        <strong>Parcela de Pigmentos</strong> → Colores
+      </article>
+
+      <article class="portal-card">
+        <img src="assets/games/colores.svg" alt="Juego de combinación de colores" />
+        <div class="portal-card__content">
+          <strong>Combinar colores</strong>
+          <span>Mezclas y pigmentos</span>
+        </div>
         <button type="button" (click)="navigateTo('/games/colores')">Entrar</button>
-      </li>
-    </ul>
+      </article>
+    </div>
   </aside>
 </section>
