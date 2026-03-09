@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   title = 'Encerrando parcelas';
   currentYear = new Date().getFullYear();
 
-  showModeSelector = false;
+  showModeSelector = true;
   showMoveHistory = false;
 
   constructor(public modeService: GameModeService) {}
