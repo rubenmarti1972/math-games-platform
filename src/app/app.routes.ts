@@ -1,12 +1,22 @@
 import { Routes } from '@angular/router';
-import { GamesComponent } from './pages/games/games.component';
 
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./game-world/world3d/world3d.component').then((m) => m.World3dComponent)
   },
-  { path: 'games', component: GamesComponent },
+  {
+    path: 'home',
+    loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.routes').then((m) => m.AUTH_ROUTES)
+  },
+  {
+    path: 'games',
+    loadComponent: () => import('./pages/hub/hub.component').then((m) => m.HubComponent)
+  },
   {
     path: 'games/othello',
     loadComponent: () =>

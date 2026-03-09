@@ -1,0 +1,68 @@
+<section class="auth-page">
+  <div class="auth-card">
+    <h1>Crear cuenta</h1>
+    <p class="auth-subtitle">Únete y empieza a aprender matemáticas jugando.</p>
+
+    @if (error()) {
+      <p class="auth-error" role="alert">{{ error() }}</p>
+    }
+
+    <form (ngSubmit)="enviarRegistro()" novalidate>
+      <label class="campo">
+        <span>Nombre de usuario</span>
+        <input
+          type="text"
+          [value]="nombre()"
+          (input)="nombre.set($any($event.target).value)"
+          placeholder="matemático123"
+          required
+          autocomplete="username"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Email</span>
+        <input
+          type="email"
+          [value]="email()"
+          (input)="email.set($any($event.target).value)"
+          placeholder="tu@email.com"
+          required
+          autocomplete="email"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Contraseña</span>
+        <input
+          type="password"
+          [value]="contrasena()"
+          (input)="contrasena.set($any($event.target).value)"
+          placeholder="Mínimo 6 caracteres"
+          required
+          autocomplete="new-password"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Confirmar contraseña</span>
+        <input
+          type="password"
+          [value]="confirmar()"
+          (input)="confirmar.set($any($event.target).value)"
+          placeholder="Repite tu contraseña"
+          required
+          autocomplete="new-password"
+        />
+      </label>
+
+      <button type="submit" class="btn-primario" [disabled]="cargando()">
+        {{ cargando() ? 'Creando cuenta...' : 'Crear cuenta' }}
+      </button>
+    </form>
+
+    <p class="auth-enlace">
+      ¿Ya tienes cuenta? <a routerLink="/auth/login">Inicia sesión</a>
+    </p>
+  </div>
+</section>

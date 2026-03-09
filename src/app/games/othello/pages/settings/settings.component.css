@@ -1,22 +1,5 @@
-/* src/app/pages/settings/settings.component.css */
-.settings-panel {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.settings-panel select {
-  padding: 0.25rem;
-}
-.settings-panel button {
-  padding: 0.4rem 0.8rem;
-  border: none;
-  background: #444;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.settings-panel button:hover {
-  background: #555;
-}
-
+.settings-panel { margin-top:1rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; }
+.settings-panel select { padding:0.35rem 0.7rem; border:1px solid rgba(0,0,0,0.13); border-radius:8px; background:#fff; font-size:0.85rem; outline:none; }
+.settings-panel select:focus { border-color:#7C3AED; }
+.settings-panel button { padding:0.4rem 0.9rem; border:none; background:#1A1918; color:#fff; border-radius:999px; cursor:pointer; font-size:0.82rem; font-weight:600; }
+.settings-panel button:hover { background:#6D28D9; }

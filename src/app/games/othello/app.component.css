@@ -1,249 +1,93 @@
-/* src/app/app.component.scss */
-
-/* 1. Variables globales */
-:root {        /* ancho del logo */
-  --header-padding: 0.5rem;
+:root {
+  --header-padding: 0.75rem;
   --cell-gap: 1rem;
-  --scoreboard-width: 120px;
+  --scoreboard-width: 220px;
+  --bg: #F6F5F2;
+  --bg-2: #FFFFFF;
+  --bg-3: #EEECEA;
+  --t1: #1A1918;
+  --t2: #52504C;
+  --t3: #A09D99;
+  --b1: rgba(0,0,0,0.07);
+  --b2: rgba(0,0,0,0.13);
+  --brand: #6D28D9;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+.app-container { display:flex; flex-direction:column; min-height:100vh; background:var(--bg); font-family:'Inter',sans-serif; color:var(--t1); }
+.app-header { display:grid; grid-template-columns:1fr; align-items:center; padding:var(--header-padding) clamp(1rem,3vw,2rem); background:var(--bg-2); border-bottom:1px solid var(--b1); }
+.title { grid-column:1; justify-self:center; font-size:1.4rem; font-weight:800; color:var(--t1); letter-spacing:-0.02em; }
+.spacer { display:none; }
+.app-main { flex:1; display:flex; flex-direction:column; padding:1rem clamp(0.75rem,2vw,1.5rem); }
+.app-footer { background:var(--bg-2); color:var(--t3); text-align:center; padding:0.6rem; border-top:1px solid var(--b1); font-size:0.8rem; }
+.side-panel { display:flex; flex-direction:column; gap:1rem; width:var(--scoreboard-width); }
+.game-area { display:grid; grid-template-columns:var(--scoreboard-width) 1fr; height:100%; gap:var(--cell-gap); width:100%; max-width:1440px; margin-inline:auto; }
+.board-panel { width:100%; height:100%; min-height:70vh; background:#1A1225; border-radius:var(--r-lg); padding:1rem; display:flex; justify-content:center; align-items:center; border:1px solid var(--b1); }
+.mode-selector { display:flex; flex-direction:column; align-items:stretch; gap:0.4rem; margin:0.5rem 0; padding:0 0.25rem; width:100%; }
+.mode-selector label { display:flex; align-items:center; justify-content:center; gap:0.4rem; cursor:pointer; font-size:0.8rem; user-select:none; padding:0.45rem 0.75rem; border:1px solid var(--b2); border-radius:var(--r-md); color:var(--t2); background:var(--bg-3); transition:all 0.2s ease; font-weight:500; }
+.mode-selector input[type='radio'] { display:none; }
+.mode-selector label:hover { border-color:rgba(109,40,217,0.3); background:#F3F0FD; color:var(--brand); }
+.mode-selector label.active { border-color:rgba(109,40,217,0.45); color:var(--brand); background:#F3F0FD; font-weight:700; box-shadow:0 0 0 3px rgba(109,40,217,0.1); }
+@media (max-width:768px) {
+  .title { font-size:1.1rem; }
+  .mode-selector { flex-direction:row; flex-wrap:wrap; justify-content:center; }
+  .mode-selector label { flex:1 1 auto; font-size:0.75rem; padding:0.35rem 0.5rem; }
+  .side-panel { width:100%; flex-direction:row; flex-wrap:wrap; }
+  .game-area { grid-template-columns:1fr; grid-template-rows:auto 1fr; }
+  .board-panel { padding:0.5rem; width:100%; height:auto; min-height:50vh; }
 }
 
-/* 2. Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* 3. Contenedor principal */
-.app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-}
-
-/* 4. Header con CSS Grid */
-.app-header {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  padding: var(--header-padding);
-  background-color: white;
-  color: black;
-  border-bottom: 2px solid black;
-}
-
-/* 4.1 Logo en columna 1 */
-.title {
-  grid-column: 1;
-  justify-self: center;
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-/* 4.3 Spacer vacío en columna 3 */
-.spacer {
-  display: none;
-}
-
-/* 5. Área principal */
-.app-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-}
-
-/* 6.1 Ajuste ancho scoreboard */
-app-score-board {
-  width: var(--scoreboard-width);
-}
-
-/* 6.2 Tablero ocupa resto */
-app-game-board {
-  flex: 1;
-}
-
-/* 7. Footer */
-.app-footer {
-  background-color: white;
-  color: black;
-  text-align: center;
-  padding: var(--header-padding);
-  border-top: none;
-  border-bottom: 2px solid black;
-}
-
-.side-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 200px;
-}
-
-
-.game-area {
-  display: grid;
-  grid-template-columns: minmax(220px, 320px) 1fr;
-  height: 100%;
-  gap: var(--cell-gap);
+/* ── Bloques colapsables ─────────────────────────────── */
+.collapsible-block {
   width: 100%;
-  max-width: 1440px;
-  margin-inline: auto;
-}
-
-.board-panel {
-  width: 100%;
-  height: 100%;
-  min-height: 70vh;
-  background: linear-gradient(90deg, #97b5d3, #c2ccd1, #d0d0e2);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
+  background: #fff;
 }
 
-.mode-selector {
-  display: flex;
-  flex-direction: column; /* Para que en side-panel quede vertical */
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
-  padding: 0 0.5rem;
+.collapsible-toggle {
   width: 100%;
-  margin-inline: auto;
-}
-
-
-.mode-selector label {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
   gap: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  font-size: 0.8rem;
-  user-select: none;
-  padding: 0.3rem 0.6rem;
-  border: 1px solid rgba(186, 230, 253, 0.45);
-  border-radius: 10px;
-  color: #e2e8f0;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 64, 175, 0.75));
-  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1A1918;
+  text-align: left;
+  transition: background 140ms ease;
 }
 
-.mode-selector input[type='radio'] {
-  display: none;
+.collapsible-toggle:hover { background: #F6F5F2; }
+
+.collapsible-toggle__label { flex: 1; }
+
+.collapsible-toggle__meta {
+  font-size: 0.72rem;
+  color: #A09D99;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
 }
 
-.mode-selector label:hover {
-  filter: brightness(1.08);
-  border-color: rgba(125, 211, 252, 0.85);
+.collapsible-toggle__arrow {
+  font-size: 0.75rem;
+  color: #A09D99;
+  transition: transform 200ms ease;
+  line-height: 1;
 }
+.collapsible-toggle__arrow.open { transform: rotate(180deg); }
 
-.mode-selector i {
-  font-size: 0.6rem; /* ícono más pequeño */
+.collapsible-body {
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding: 0.6rem;
 }
-
-.mode-selector label.active {
-  border-color: rgba(20, 184, 166, 0.95);
-  color: #f8fafc;
-  background: linear-gradient(135deg, #0f766e, #1d4ed8);
-  box-shadow: 0 0 10px rgba(20, 184, 166, 0.45);
-  font-weight: bold;
-}
-
-/* Responsive específico para pantallas chicas */
-@media (max-width: 500px) {
-  .mode-selector {
-    flex-direction: row; /* En mobile horizontal, más compacto */
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .mode-selector label {
-    flex: 1 1 auto;
-    justify-content: center;
-    font-size: 0.5rem;
-    padding: 0.2rem 0.4rem;
-  }
-
-  .mode-selector i {
-    font-size: 0.5rem;
-  }
-
-  .mode-selector label.active {
-    border-color: rgba(20, 184, 166, 0.95);
-    color: #f8fafc;
-    background: linear-gradient(135deg, #0f766e, #1d4ed8);
-    box-shadow: 0 0 10px rgba(20, 184, 166, 0.45);
-    font-weight: bold;
-  }
-
-}
-
-
-/* 🎁 Responsive para móvil */
-@media (max-width: 768px) {
-  .app-header {
-    grid-template-columns: 1fr;
-    padding: 0.3rem;
-  }
-
-  .title {
-    font-size: 1.8rem; /* mucho más pequeño */
-  }
-
-  .mode-selector {
-    gap: 0.8rem;
-    margin: 0.5rem 0;
-    flex-wrap: wrap;
-  }
-
-  .mode-selector label {
-    font-size: 0.9rem;
-    padding: 0.3rem 0.6rem;
-    gap: 0.3rem;
-    border: 1px solid rgba(186, 230, 253, 0.45);
-    border-radius: 10px;
-  }
-
-  .mode-selector i {
-    font-size: 1rem;
-  }
-
-  .side-panel {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .game-area {
-    grid-template-columns: 1fr; /* tablero abajo de los controles */
-    grid-template-rows: auto 1fr;
-    gap: 0.8rem;
-  }
-
-  .board-panel {
-    padding: 0.5rem;
-    border-radius: 6px;
-    width: 100%;
-    height: auto;
-  }
-
-  app-score-board {
-    width: auto;
-  }
-
-  .app-footer {
-    font-size: 0.8rem;
-    padding: 0.3rem;
-  }
-}
-
-
-

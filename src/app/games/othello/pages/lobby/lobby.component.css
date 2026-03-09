@@ -1,19 +1,6 @@
-:host {
-  display: block;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-button {
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-input {
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-}
+:host { display:block; background:#F6F5F2; min-height:100vh; padding:2rem; }
+h2 { text-align:center; margin-bottom:1.5rem; color:#1A1918; font-size:1.5rem; letter-spacing:-0.02em; }
+button { margin:0.4rem; padding:0.6rem 1.2rem; cursor:pointer; border:none; background:#1A1918; color:#fff; border-radius:999px; font-weight:600; font-size:0.875rem; transition:background 0.18s; }
+button:hover { background:#6D28D9; }
+input { padding:0.6rem 0.9rem; margin-right:0.5rem; border:1px solid rgba(0,0,0,0.13); border-radius:10px; font-size:0.9rem; outline:none; }
+input:focus { border-color:#7C3AED; box-shadow:0 0 0 3px rgba(109,40,217,0.15); }

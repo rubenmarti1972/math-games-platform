@@ -1,49 +1,89 @@
 <div class="app-container">
   <header class="app-header">
     <h1 class="title">{{ title }}</h1>
-    <div class="spacer"></div>
   </header>
 
   <main class="app-main">
     <div class="game-area">
+
+      <!-- ══ Panel lateral izquierdo ══════════════════════════ -->
       <div class="side-panel">
-        <!-- 👇 Este mode-selector es lo que vamos a estilizar -->
-        <div class="mode-selector">
-          <label [class.active]="mode === 'pvp'" title="Cuadrilla vs Cuadrilla">
 
-            <input type="radio" name="mode" (change)="setMode('pvp')" [checked]="mode === 'pvp'" />
-            <i class="fas fa-user" style="color: red;"></i>
-            <i class="fas fa-user" style="color: green;"></i>
-            <span>Granja Norte vs Granja Sur</span>
-          </label>
+        <!-- Controles principales -->
+        <app-controls-panel></app-controls-panel>
 
-          <label [class.active]="mode === 'cpu'" title="Granja vs Capataz">
-            <input type="radio" name="mode" (change)="setMode('cpu')" [checked]="mode === 'cpu'" />
-            <i class="fas fa-user" style="color: red;"></i>
-            <i class="fas fa-desktop" style="color: green;"></i>
-            <span>Granja vs Capataz</span>
-          </label>
+        <!-- Turno e indicador -->
+        <app-player-turn-indicator></app-player-turn-indicator>
+
+        <!-- Marcador -->
+        <app-score-board></app-score-board>
+
+        <!-- ── Board de Expedición (colapsable) ────────────── -->
+        <div class="collapsible-block">
+          <button
+            class="collapsible-toggle"
+            (click)="showModeSelector = !showModeSelector"
+            [attr.aria-expanded]="showModeSelector">
+            <span class="collapsible-toggle__label">
+              ⚔️ Board de Expedición
+            </span>
+            <span class="collapsible-toggle__meta">{{ getModeLabel() }}</span>
+            <span class="collapsible-toggle__arrow" [class.open]="showModeSelector">▾</span>
+          </button>
+
+          @if (showModeSelector) {
+            <div class="collapsible-body">
+              <div class="mode-selector">
+                <label [class.active]="mode === 'pvp'" title="Cuadrilla vs Cuadrilla">
+                  <input type="radio" name="mode" (change)="setMode('pvp')" [checked]="mode === 'pvp'" />
+                  <i class="fas fa-user" style="color:#dc2626;"></i>
+                  <i class="fas fa-user" style="color:#16a34a;"></i>
+                  <span>Granja Norte vs Granja Sur</span>
+                </label>
+                <label [class.active]="mode === 'cpu'" title="Granja vs Capataz">
+                  <input type="radio" name="mode" (change)="setMode('cpu')" [checked]="mode === 'cpu'" />
+                  <i class="fas fa-user" style="color:#dc2626;"></i>
+                  <i class="fas fa-desktop" style="color:#16a34a;"></i>
+                  <span>Granja vs Capataz</span>
+                </label>
+              </div>
+            </div>
+          }
         </div>
 
-        <app-controls-panel></app-controls-panel>
-        <app-player-turn-indicator></app-player-turn-indicator>
-        <app-score-board></app-score-board>
+        <!-- ── Bitácora de Personaje (colapsable) ───────────── -->
+        <div class="collapsible-block">
+          <button
+            class="collapsible-toggle"
+            (click)="showMoveHistory = !showMoveHistory"
+            [attr.aria-expanded]="showMoveHistory">
+            <span class="collapsible-toggle__label">📖 Bitácora</span>
+            <span class="collapsible-toggle__arrow" [class.open]="showMoveHistory">▾</span>
+          </button>
+
+          @if (showMoveHistory) {
+            <div class="collapsible-body">
+              <app-move-history></app-move-history>
+            </div>
+          }
+        </div>
+
+        <!-- Instrucciones -->
         <app-instructions></app-instructions>
+
       </div>
+
+      <!-- ══ Tablero ══════════════════════════════════════════ -->
       <div class="board-panel">
         <router-outlet></router-outlet>
       </div>
-    </div>
 
-   <!--  <app-move-history></app-move-history> -->
-   <!--  <app-settings></app-settings> -->
+    </div>
   </main>
 
   <footer class="app-footer">
     <small>&copy; {{ currentYear }} - Juego de parcelas de granja</small>
-    <a href="https://docs.google.com/presentation/d/1a893t9SWsrmtRKGFjBaqJ9d5xkxk98TVUans4RmArsQ/edit?slide=id.gf1190ce234_0_0#slide=id.gf1190ce234_0_0" target="_blank">
-    Ver presentación
-    </a>
-
+    <a href="https://docs.google.com/presentation/d/1a893t9SWsrmtRKGFjBaqJ9d5xkxk98TVUans4RmArsQ/edit?slide=id.gf1190ce234_0_0#slide=id.gf1190ce234_0_0"
+       target="_blank" rel="noopener">Ver presentación</a>
   </footer>
 </div>

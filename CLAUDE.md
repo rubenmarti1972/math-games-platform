@@ -82,3 +82,133 @@ Inline styles use `inlineStyleLanguage: "scss"` (configured in `angular.json`).
 ### TypeScript config
 
 Strict mode is fully enabled (`strict`, `noImplicitOverride`, `strictTemplates`, etc.). Target is **ES2022**. Module resolution: `bundler`.
+
+---
+
+# CONTEXTO DEL PROYECTO
+
+Estoy desarrollando una plataforma web para aprender matemáticas jugando.
+
+## Stack técnico
+- **Frontend:** Angular 20 (standalone components, signals, inject())
+- **Node:** 20.19.5
+- **Backend/CMS:** Strapi 5 (aún no instalado, hay que configurarlo)
+- **Gestor de paquetes:** npm
+
+## Estructura actual
+El proyecto Angular está en una sola carpeta raíz. Ya existe:
+- `home/landing` — componente de pantalla de inicio
+- Al menos un componente de juego o ejercicio matemático
+- Rutas configuradas en el router
+
+**No toques ni elimines lo que ya existe.** Analízalo primero y adáptate a ello.
+
+---
+
+# PASO 1 — DIAGNÓSTICO
+
+Antes de hacer cualquier cambio:
+1. Lee toda la estructura de `src/`
+2. Lista los componentes, servicios, rutas y módulos existentes
+3. Identifica qué sigue las buenas prácticas de Angular 20 y qué habría que mejorar
+4. Muéstrame un resumen del diagnóstico antes de continuar
+
+---
+
+# PASO 2 — ARQUITECTURA PROPUESTA
+
+Propón y crea (si no existe) la siguiente estructura de carpetas:
+
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── services/        # auth, api, storage
+│   │   ├── guards/          # auth, role
+│   │   └── interceptors/    # token, errors
+│   ├── shared/
+│   │   ├── components/      # botones, tarjetas, modals reutilizables
+│   │   ├── pipes/
+│   │   └── directives/
+│   ├── features/
+│   │   ├── home/            # ya existe, revisar
+│   │   ├── auth/            # login, registro
+│   │   ├── dashboard/       # progreso, estadísticas
+│   │   ├── games/           # ejercicios, ya existe algo
+│   │   └── leaderboard/     # ranking
+│   └── app.routes.ts
+```
+
+---
+
+# PASO 3 — STRAPI: INSTALACIÓN Y CONFIGURACIÓN
+
+En la misma raíz del proyecto, crea una carpeta `/backend` e instala Strapi 5:
+
+```bash
+cd backend
+npx create-strapi-app@latest . --quickstart
+```
+
+Luego crea los siguientes **Content Types** en Strapi:
+
+| Nombre        | Campos principales                                                  |
+|---------------|----------------------------------------------------------------------|
+| `Ejercicio`   | titulo, enunciado, tipo (opcion_multiple/completar/arrastrar), nivel, categoria, opciones (JSON), respuesta_correcta, explicacion, puntos_xp |
+| `Categoria`   | nombre, descripcion, icono, color                                    |
+| `Nivel`       | nombre (Primaria/Secundaria/Bachillerato), orden, descripcion        |
+| `Logro`       | nombre, descripcion, icono, condicion, puntos_requeridos             |
+| `Progreso`    | usuario, ejercicio, completado, correcto, fecha, tiempo_segundos     |
+
+---
+
+# PASO 4 — SERVICIOS ANGULAR (conexión con Strapi)
+
+Crea los siguientes servicios en `core/services/` usando `HttpClient` con signals:
+
+- **`api.service.ts`** — base URL configurable, métodos genéricos GET/POST/PUT/DELETE
+- **`auth.service.ts`** — login, registro, logout, token JWT, usuario actual como signal
+- **`ejercicios.service.ts`** — obtener por nivel, categoría, aleatorios
+- **`progreso.service.ts`** — guardar resultado, obtener historial, calcular XP total
+- **`logros.service.ts`** — verificar logros desbloqueados, obtener todos
+
+Configura el `HttpClient` con interceptor para añadir el JWT de Strapi automáticamente.
+
+---
+
+# PASO 5 — FUNCIONALIDADES A IMPLEMENTAR (por fases)
+
+### Fase 1 — Base (empezar aquí)
+- [ ] Módulo de autenticación completo (login + registro) conectado a Strapi
+- [ ] Guard de rutas para proteger páginas privadas
+- [ ] Servicio API base con interceptor JWT
+- [ ] Revisar y mejorar el home existente
+
+### Fase 2 — Núcleo del juego
+- [ ] Refactorizar/mejorar el componente de ejercicio existente
+- [ ] Motor de juego: mostrar pregunta → validar → feedback → siguiente
+- [ ] 3 tipos de ejercicio: opción múltiple, completar resultado, arrastrar y soltar
+- [ ] Servicio de XP y puntuación en tiempo real
+
+### Fase 3 — Progreso y gamificación
+- [ ] Dashboard personal con estadísticas y gráficas
+- [ ] Sistema de logros/insignias
+- [ ] Ranking/leaderboard global y por nivel
+
+### Fase 4 — UX y polish
+- [ ] Animaciones con Angular Animations
+- [ ] Diseño responsive mobile-first
+- [ ] Sonidos y efectos de retroalimentación
+- [ ] Modo oscuro
+
+---
+
+# REGLAS GENERALES
+
+- Usa **Angular 20 moderno**: standalone components, signals, `inject()`, `input()`, `output()`
+- **Sin NgModules** a menos que sea estrictamente necesario
+- Tipado estricto con TypeScript, sin `any`
+- Nombres en **español** para variables de dominio (nivel, ejercicio, puntaje)
+- Comenta el código en español
+- Antes de crear un archivo nuevo, verifica si ya existe algo parecido
+- Implementa **Fase 1 completa** con código funcional antes de pasar a la siguiente

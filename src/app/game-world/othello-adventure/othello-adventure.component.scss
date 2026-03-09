@@ -1,14 +1,13 @@
+@use '../../../styles/variables' as *;
+
 :host {
   display: block;
 }
 
 .adventure-shell {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(59, 130, 246, 0.25), transparent 34%),
-    radial-gradient(circle at 85% 12%, rgba(244, 63, 94, 0.15), transparent 30%),
-    #020617;
-  color: #e2e8f0;
+  background: $bg;
+  color: $t1;
   padding: 0.8rem;
   display: grid;
   gap: 0.8rem;
@@ -19,29 +18,32 @@
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
-  border: 1px solid rgba(148, 163, 184, 0.28);
-  border-radius: 0.9rem;
+  border: 1px solid $b1;
+  border-radius: $r-lg;
   padding: 0.9rem 1rem;
-  background: rgba(2, 6, 23, 0.65);
+  background: $bg-2;
+  box-shadow: $shadow-sm;
 
   h1 {
     margin: 0.2rem 0;
     font-size: 1.2rem;
+    color: $t1;
   }
 
   .subtitle {
     margin: 0;
-    color: #bfdbfe;
-    font-size: 0.9rem;
+    color: $t2;
+    font-size: 0.875rem;
   }
 }
 
 .eyebrow {
   margin: 0;
-  color: #93c5fd;
+  color: $brand-mid;
   letter-spacing: 0.12em;
   font-size: 0.72rem;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .topbar-actions {
@@ -53,35 +55,44 @@
 
 .btn {
   text-decoration: none;
-  border: 1px solid rgba(96, 165, 250, 0.5);
-  border-radius: 0.7rem;
-  background: rgba(30, 41, 59, 0.85);
-  color: #e2e8f0;
+  border: 1px solid $b2;
+  border-radius: $r-md;
+  background: $bg-3;
+  color: $t1;
   padding: 0.5rem 0.85rem;
   font-size: 0.82rem;
   cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+
+  &:hover {
+    border-color: rgba(109, 40, 217, 0.35);
+    background: #F3F0FD;
+  }
 }
 
 .btn--ghost {
-  border-color: rgba(196, 181, 253, 0.5);
+  border-color: rgba(109, 40, 217, 0.25);
+  color: $brand;
 }
 
 .adventure-board {
-  border: 1px solid rgba(148, 163, 184, 0.26);
-  border-radius: 0.9rem;
+  border: 1px solid $b1;
+  border-radius: $r-lg;
   padding: 0.8rem;
-  background: rgba(2, 6, 23, 0.72);
+  background: $bg-2;
+  box-shadow: $shadow-sm;
 }
 
 .board-head {
   h2 {
     margin: 0;
     font-size: 1rem;
+    color: $t1;
   }
 
   p {
     margin: 0.25rem 0 0;
-    color: #cbd5e1;
+    color: $t2;
     font-size: 0.85rem;
   }
 }
@@ -91,6 +102,7 @@
   display: flex;
   gap: 1rem;
   font-size: 0.82rem;
+  color: $t2;
 
   span {
     display: inline-flex;
@@ -109,29 +121,30 @@
 }
 
 .tile {
-  border: 1px solid rgba(148, 163, 184, 0.3);
-  border-radius: 0.75rem;
+  border: 1px solid $b1;
+  border-radius: $r-md;
   padding: 0.5rem;
-  background: rgba(15, 23, 42, 0.8);
+  background: $bg-3;
 
   &--active {
-    border-color: rgba(52, 211, 153, 0.6);
-    box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.25) inset;
+    border-color: rgba(22, 163, 74, 0.5);
+    background: rgba(22, 163, 74, 0.06);
   }
 
   &__id {
     font-size: 0.73rem;
-    color: #93c5fd;
+    color: $brand-mid;
   }
 
   h3 {
     margin: 0.25rem 0 0;
     font-size: 0.85rem;
+    color: $t1;
   }
 
   p {
     margin: 0.25rem 0 0;
-    color: #cbd5e1;
+    color: $t2;
     font-size: 0.74rem;
     line-height: 1.25;
   }
@@ -142,7 +155,7 @@
   height: 0.75rem;
   border-radius: 999px;
   display: inline-block;
-  border: 1px solid rgba(226, 232, 240, 0.45);
+  border: 1px solid $b2;
 
   &--red {
     background: radial-gradient(circle at 30% 30%, #fecaca, #dc2626 70%);
@@ -161,21 +174,22 @@
   gap: 0.2rem;
   padding: 0.35rem 0.45rem;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid $b2;
+  background: $bg-2;
+  box-shadow: $shadow-sm;
   transition: left 300ms ease, transform 220ms ease, border-color 200ms ease;
 
   .avatar-orb {
     width: 1.05rem;
     height: 1.05rem;
     border-radius: 999px;
-    border: 1px solid rgba(226, 232, 240, 0.5);
+    border: 1px solid $b2;
     display: block;
   }
 
   small {
     font-size: 0.63rem;
-    color: #e2e8f0;
+    color: $t2;
     white-space: nowrap;
   }
 
@@ -188,16 +202,17 @@
   }
 
   &--discovered {
-    border-color: rgba(147, 197, 253, 0.78);
+    border-color: rgba(109, 40, 217, 0.5);
     transform: translate(-50%, -50%) scale(1.07);
   }
 }
 
 .mission-panel {
-  border: 1px solid rgba(148, 163, 184, 0.26);
-  border-radius: 0.9rem;
+  border: 1px solid $b1;
+  border-radius: $r-lg;
   padding: 0.8rem;
-  background: rgba(2, 6, 23, 0.7);
+  background: $bg-2;
+  box-shadow: $shadow-sm;
 
   &__head {
     display: flex;
@@ -208,10 +223,11 @@
     h2 {
       margin: 0;
       font-size: 1rem;
+      color: $t1;
     }
 
     span {
-      color: #93c5fd;
+      color: $brand-mid;
       font-size: 0.8rem;
     }
   }
@@ -229,10 +245,10 @@
     justify-content: space-between;
     gap: 1rem;
     align-items: center;
-    border: 1px solid rgba(148, 163, 184, 0.25);
-    border-radius: 0.7rem;
+    border: 1px solid $b1;
+    border-radius: $r-md;
     padding: 0.55rem;
-    background: rgba(15, 23, 42, 0.75);
+    background: $bg-3;
 
     h3 {
       margin: 0;
@@ -240,31 +256,33 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      color: $t1;
     }
 
     p {
       margin: 0.1rem 0;
-      color: #bfdbfe;
+      color: $t2;
       font-size: 0.8rem;
     }
 
     small {
-      color: #cbd5e1;
+      color: $t3;
     }
 
     &.done {
-      border-color: rgba(16, 185, 129, 0.55);
-      background: rgba(6, 78, 59, 0.32);
+      border-color: rgba(22, 163, 74, 0.35);
+      background: rgba(22, 163, 74, 0.05);
     }
 
     button {
-      border: 1px solid rgba(110, 231, 183, 0.35);
+      border: 1px solid rgba(22, 163, 74, 0.35);
       border-radius: 999px;
-      background: rgba(30, 41, 59, 0.85);
-      color: #d1fae5;
+      background: $bg-2;
+      color: $green;
       padding: 0.35rem 0.65rem;
       cursor: pointer;
       white-space: nowrap;
+      font-size: 0.8rem;
     }
   }
 }
@@ -272,30 +290,30 @@
 .track {
   margin-top: 0.55rem;
   width: 100%;
-  height: 8px;
+  height: 6px;
   border-radius: 99px;
-  background: rgba(148, 163, 184, 0.26);
+  background: $b1;
   overflow: hidden;
 
   span {
     display: block;
     height: 100%;
-    background: linear-gradient(90deg, #22d3ee, #34d399);
+    background: linear-gradient(90deg, $brand-mid, $green);
     transition: width 240ms ease;
   }
 }
 
 .objective {
   margin: 0.6rem 0 0;
-  color: #e2e8f0;
+  color: $t2;
   font-size: 0.86rem;
 }
 
 .game-zone {
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 0.9rem;
+  border: 1px solid $b1;
+  border-radius: $r-lg;
   overflow: hidden;
-  background: rgba(2, 6, 23, 0.45);
+  background: $bg-2;
 }
 
 @media (max-width: 1100px) {

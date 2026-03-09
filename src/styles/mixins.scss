@@ -1,3 +1,45 @@
+@use 'variables' as *;
+
 @mixin smooth($props...) {
-  transition: $props 0.25s ease;
+  transition: $props 0.2s ease;
+}
+
+@mixin card {
+  background: $bg-2;
+  border: 1px solid $b1;
+  border-radius: $r-lg;
+  box-shadow: $shadow-sm;
+}
+
+@mixin glass($bg: $bg-glass, $border: $b1) {
+  background: $bg;
+  border: 1px solid $border;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@mixin glow($color: $brand-glow, $blur: 20px) {
+  box-shadow: 0 0 $blur $color;
+}
+
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: $r-full;
+  font-family: $font-body;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: filter 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+@mixin eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $brand-mid;
 }

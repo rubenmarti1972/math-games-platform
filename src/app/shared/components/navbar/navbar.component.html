@@ -4,7 +4,13 @@
   <nav class="navbar__links">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
     <a routerLink="/games" routerLinkActive="active">Juegos</a>
-    <a href="#" class="disabled">Clasificación</a>
-    <a href="#" class="disabled">Perfil</a>
+
+    @if (authService.autenticado()) {
+      <span class="navbar__usuario">{{ authService.usuario()?.username }}</span>
+      <button class="navbar__logout" (click)="authService.logout()">Salir</button>
+    } @else {
+      <a routerLink="/auth/login" routerLinkActive="active">Iniciar sesión</a>
+      <a routerLink="/auth/registro" class="navbar__cta">Registrarse</a>
+    }
   </nav>
 </header>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { GameCardComponent } from '../../components/game-card/game-card.component';
-import { MathBackgroundComponent } from '../../components/math-background/math-background.component';
+import { GameCardComponent } from '../../shared/components/game-card/game-card.component';
+import { MathBackgroundComponent } from '../../shared/components/math-background/math-background.component';
 import { DIFFICULTY_LABELS_ES, GAMES, GameDefinition, GameDifficulty } from '../../games/games.registry';
 
 @Component({

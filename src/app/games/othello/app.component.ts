@@ -1,5 +1,4 @@
-// src/app/app.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -16,7 +15,7 @@ import { InstructionsComponent } from './pages/instructions/instructions.compone
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule, // para que funcione <router-outlet>
+    RouterModule,
     ControlsPanelComponent,
     PlayerTurnIndicatorComponent,
     ScoreBoardComponent,
@@ -27,19 +26,26 @@ import { InstructionsComponent } from './pages/instructions/instructions.compone
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-
-   mode: 'pvp' | 'cpu' = 'pvp';
+export class AppComponent implements OnInit {
+  mode: 'pvp' | 'cpu' = 'pvp';
   title = 'Encerrando parcelas';
   currentYear = new Date().getFullYear();
+
+  showModeSelector = false;
+  showMoveHistory = false;
+
   constructor(public modeService: GameModeService) {}
 
   ngOnInit() {
     this.mode = this.modeService.currentMode;
   }
-   setMode(mode: 'pvp' | 'cpu') {
+
+  setMode(mode: 'pvp' | 'cpu') {
     this.modeService.setMode(mode);
     this.mode = mode;
   }
 
+  getModeLabel(): string {
+    return this.mode === 'pvp' ? 'Granja Norte vs Granja Sur' : 'Granja vs Capataz';
+  }
 }

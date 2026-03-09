@@ -1,7 +1,16 @@
+@use '../styles/variables' as *;
+
 :host {
   display: block;
+  background: $bg;
 }
 
+.app-main {
+  min-height: calc(100vh - 60px);
+  background: $bg;
+}
+
+// HUD para rutas /games/*
 .game-hud {
   position: sticky;
   top: 0;
@@ -10,94 +19,91 @@
   grid-template-columns: 1.5fr 1fr auto;
   gap: 1rem;
   align-items: center;
-  padding: 0.85rem 1rem;
-  background:
-    radial-gradient(circle at 15% 0, rgba(59, 130, 246, 0.3), transparent 35%),
-    rgba(2, 6, 23, 0.95);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.28);
-  color: #e2e8f0;
+  padding: 0.75rem 1rem;
+  background: rgba(246, 245, 242, 0.95);
+  border-bottom: 1px solid $b1;
+  backdrop-filter: blur(12px);
+  color: $t1;
 
   h2 {
     margin: 0.1rem 0 0.2rem;
-    font-size: 1.05rem;
+    font-size: 1rem;
+    color: $t1;
   }
 
   p {
     margin: 0;
-    font-size: 0.85rem;
-    color: #cbd5e1;
+    font-size: 0.82rem;
+    color: $t2;
   }
 }
 
 .label {
   margin: 0;
-  color: #93c5fd;
-  font-size: 0.72rem;
+  color: $brand-mid;
+  font-size: 0.7rem;
   letter-spacing: 0.12em;
   font-weight: 700;
 }
 
 .game-hud__center {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.3rem;
 }
 
 .stat {
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
+  color: $t2;
 
   strong {
-    color: #f8fafc;
-    font-size: 0.9rem;
+    color: $t1;
+    font-size: 0.875rem;
   }
 }
 
 .progress-track {
   width: 100%;
-  height: 7px;
-  background: rgba(148, 163, 184, 0.25);
+  height: 5px;
+  background: $b1;
   border-radius: 99px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  background: linear-gradient(90deg, $brand, $brand-light);
   transition: width 260ms ease;
 }
 
 .game-hud__actions {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.4rem;
 }
 
 .hud-btn {
   text-decoration: none;
   text-align: center;
-  padding: 0.45rem 0.8rem;
-  border-radius: 0.65rem;
-  border: 1px solid rgba(59, 130, 246, 0.6);
-  background: rgba(30, 41, 59, 0.85);
-  color: #e2e8f0;
+  padding: 0.4rem 0.75rem;
+  border-radius: $r-md;
+  border: 1px solid $b2;
+  background: $bg-2;
+  color: $t1;
   font-size: 0.8rem;
   font-weight: 600;
+  transition: border-color 160ms ease, background 160ms ease;
+
+  &:hover {
+    border-color: rgba(109, 40, 217, 0.3);
+    background: $bg-3;
+  }
 
   &--alt {
-    border-color: rgba(167, 139, 250, 0.6);
+    border-color: rgba(109, 40, 217, 0.25);
+    color: $brand;
   }
-}
-
-.app-main {
-  min-height: calc(100vh - 72px);
-}
-
-.app-main--immersive {
-  min-height: calc(100vh - 78px);
-  background:
-    radial-gradient(circle at top, rgba(30, 64, 175, 0.22), transparent 35%),
-    #020617;
 }
 
 @media (max-width: 900px) {

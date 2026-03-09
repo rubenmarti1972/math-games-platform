@@ -2,14 +2,55 @@
 @use 'styles/layout';
 @use 'styles/components';
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
 body {
   margin: 0;
-  background: $color-bg;
-  color: $color-text;
+  background: $bg;
+  color: $t2;
   font-family: $font-body;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  color: $t1;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+}
+
+img, svg {
+  max-width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: $bg-3;
+}
+::-webkit-scrollbar-thumb {
+  background: $bg-4;
+  border-radius: $r-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $brand-mid;
+}
+
+::selection {
+  background: rgba(109, 40, 217, 0.15);
+  color: $t1;
 }

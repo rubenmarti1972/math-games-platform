@@ -1,46 +1,89 @@
 @use '../../../../styles/variables' as *;
 
+:host {
+  display: block;
+}
+
 .game-card {
-  background: $color-white;
-  border-radius: 16px;
+  background: $bg-2;
+  border: 1px solid $b1;
+  border-radius: $r-lg;
   padding: 1.5rem;
-  min-height: 230px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 8px 20px rgba(15, 42, 68, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.8rem;
+  cursor: pointer;
+  height: 100%;
+  box-shadow: $shadow-sm;
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 
-  &:hover {
-    transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 12px 26px rgba(15, 42, 68, 0.18);
+  &:hover,
+  &:focus-visible {
+    border-color: rgba(109, 40, 217, 0.3);
+    background: $bg-3;
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
   }
 
-  h3 {
-    margin: 0;
-    color: $color-primary;
-    font-family: $font-heading;
-  }
-
-  p {
-    color: rgba(26, 26, 26, 0.85);
-    line-height: 1.45;
+  &:focus-visible {
+    outline: 2px solid $brand-mid;
+    outline-offset: 3px;
   }
 }
 
-.play-btn {
-  align-self: flex-start;
-  background: $color-accent;
-  color: $color-white;
-  text-decoration: none;
-  padding: 0.65rem 1.25rem;
-  border-radius: 999px;
-  font-weight: 600;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+.game-card__icon {
+  font-size: 2rem;
+  line-height: 1;
+  display: block;
+}
+
+.game-card__content {
+  h3 {
+    margin: 0 0 0.4rem;
+    color: $t1;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 0 0 0.7rem;
+    color: $t2;
+    line-height: 1.55;
+    font-size: 0.875rem;
+  }
+}
+
+.difficulty {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: $r-full;
+  background: #F3F0FD;
+  border: 1px solid rgba(109, 40, 217, 0.2);
+  color: $brand;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.play-button {
+  width: 100%;
+  border: none;
+  border-radius: $r-md;
+  padding: 0.65rem 1rem;
+  background: $t1;
+  color: $bg-2;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 160ms ease, box-shadow 160ms ease;
 
   &:hover {
-    background: $color-accent-hover;
-    transform: translateY(-1px);
-    box-shadow: 0 0 16px rgba(255, 159, 28, 0.5);
+    background: $brand;
+    color: #fff;
+    box-shadow: 0 4px 14px $brand-glow;
   }
 }

@@ -1,42 +1,5 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.winner-banner {
-  width: min(100%, 980px);
-  margin: 0 auto 0.65rem;
-  padding: 0.65rem 0.9rem;
-  border-radius: 0.75rem;
-  background: linear-gradient(135deg, #111827, #1f2937);
-  color: #e5e7eb;
-  border: 1px solid #334155;
-  font-weight: 700;
-}
-
-.board-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  width: min(100%, 980px);
-  margin-inline: auto;
-  min-height: 60vh;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
-  border-radius: 1rem;
-  padding: 1rem;
-}
-
-.board-wrapper.island-mode {
-  background:
-    radial-gradient(circle at 25% 20%, rgba(6, 182, 212, 0.18), transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.16), transparent 40%),
-    #0b1220;
-}
-
-app-othello-3d {
-  width: min(100%, 900px);
-  height: min(75vh, 760px);
-}
+:host { display:flex; flex-direction:column; align-items:center; width:100%; }
+.winner-banner { width:min(100%,980px); margin:0 auto 0.65rem; padding:0.65rem 1rem; border-radius:12px; background:#F3F0FD; color:#6D28D9; border:1px solid rgba(109,40,217,0.25); font-weight:700; font-size:0.95rem; }
+.board-wrapper { display:flex; justify-content:center; align-items:center; box-sizing:border-box; width:min(100%,980px); margin-inline:auto; min-height:60vh; background:#1A1225; border-radius:16px; padding:1rem; border:1px solid rgba(255,255,255,0.05); }
+.board-wrapper.island-mode { background:radial-gradient(circle at 25% 20%,rgba(109,40,217,0.2),transparent 45%),radial-gradient(circle at 80% 70%,rgba(59,130,246,0.15),transparent 40%),#1A1225; }
+app-othello-3d { width:min(100%,900px); height:min(75vh,760px); }

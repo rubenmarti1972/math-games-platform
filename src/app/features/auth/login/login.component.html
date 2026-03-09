@@ -1,0 +1,44 @@
+<section class="auth-page">
+  <div class="auth-card">
+    <h1>Iniciar sesión</h1>
+    <p class="auth-subtitle">Accede a tu cuenta para continuar aprendiendo.</p>
+
+    @if (error()) {
+      <p class="auth-error" role="alert">{{ error() }}</p>
+    }
+
+    <form (ngSubmit)="enviarLogin()" #formulario="ngForm" novalidate>
+      <label class="campo">
+        <span>Email</span>
+        <input
+          type="email"
+          [value]="email()"
+          (input)="email.set($any($event.target).value)"
+          placeholder="tu@email.com"
+          required
+          autocomplete="email"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Contraseña</span>
+        <input
+          type="password"
+          [value]="contrasena()"
+          (input)="contrasena.set($any($event.target).value)"
+          placeholder="••••••••"
+          required
+          autocomplete="current-password"
+        />
+      </label>
+
+      <button type="submit" class="btn-primario" [disabled]="cargando()">
+        {{ cargando() ? 'Entrando...' : 'Entrar' }}
+      </button>
+    </form>
+
+    <p class="auth-enlace">
+      ¿No tienes cuenta? <a routerLink="/auth/registro">Regístrate</a>
+    </p>
+  </div>
+</section>
