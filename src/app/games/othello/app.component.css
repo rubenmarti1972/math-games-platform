@@ -106,6 +106,7 @@
   display: block;
   width: 100%;
   max-width: 980px;
+  flex: 1 1 auto;
   margin-inline: auto;
 }
 
@@ -113,6 +114,7 @@
   display: block;
   width: 100%;
   max-width: 980px;
+  flex: 1 1 auto;
   margin-inline: auto;
 }
 
