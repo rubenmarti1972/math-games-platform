@@ -256,14 +256,13 @@ private findAllValidMoves(player: Player): [number, number][] {
   applyReto2(): void {
     this.validCellsForRetoRestricto.clear();
     this.size = 6;
-    // tablero vacío 4×4
+    // tablero vacío 6×6
     this.board = Array.from({ length: 6 }, () => Array<CellState>(6).fill('empty'));
-    // coloca verdes = 'white' en (1,2),(2,2)  -- índice base 0: [0][1],[1][1]
+    // inicio estándar de Othello: 2 fichas por color en diagonal
     this.board[2][2] = 'white';
-    this.board[3][2] = 'white';
-    // coloca rojas = 'black' en (1,3),(3,3) → [0][2],[2][2]
+    this.board[3][3] = 'white';
     this.board[2][3] = 'black';
-    this.board[3][3] = 'black';
+    this.board[3][2] = 'black';
 
     // reinicia flujo de turno e historial
     this.currentPlayer = 'black';
