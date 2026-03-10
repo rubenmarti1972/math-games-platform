@@ -1,5 +1,18 @@
-:host { display:flex; flex-direction:column; align-items:center; width:100%; }
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 980px);
+  flex: 1 1 auto;
+  margin-inline: auto;
+}
 .winner-banner { width:min(100%,980px); margin:0 auto 0.65rem; padding:0.65rem 1rem; border-radius:12px; background:#F3F0FD; color:#6D28D9; border:1px solid rgba(109,40,217,0.25); font-weight:700; font-size:0.95rem; }
 .board-wrapper { display:flex; justify-content:center; align-items:center; box-sizing:border-box; width:min(100%,980px); margin-inline:auto; min-height:60vh; background:#1A1225; border-radius:16px; padding:1rem; border:1px solid rgba(255,255,255,0.05); }
 .board-wrapper.island-mode { background:radial-gradient(circle at 25% 20%,rgba(109,40,217,0.2),transparent 45%),radial-gradient(circle at 80% 70%,rgba(59,130,246,0.15),transparent 40%),#1A1225; }
-app-othello-3d { width:min(100%,900px); height:min(75vh,760px); }
+app-othello-3d {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: min(75vh, 760px);
+  margin-inline: auto;
+}
