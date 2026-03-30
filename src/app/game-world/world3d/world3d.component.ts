@@ -15,7 +15,7 @@ declare global {
   }
 }
 
-type PortalRoute = '/games/othello' | '/games/panda4x4' | '/games/colores';
+type PortalRoute = '/games/othello' | '/games/panda4x4' | '/games/colores' | '/games/hanoi';
 
 interface PortalTarget {
   mesh: any;
@@ -160,9 +160,10 @@ export class World3dComponent implements AfterViewInit, OnDestroy {
 
   private createIslands(): void {
     const THREE = window.THREE;
-    this.createIsland('Parcela Estratégica', new THREE.Vector3(-10, 1, 0), '#34d399', '/games/othello');
-    this.createIsland('Parcela Lógica', new THREE.Vector3(0, 2.5, -8), '#60a5fa', '/games/panda4x4');
-    this.createIsland('Parcela de Pigmentos', new THREE.Vector3(11, 1.4, 2), '#f472b6', '/games/colores');
+    this.createIsland('Parcela Estratégica', new THREE.Vector3(-10, 1, 0),   '#34d399', '/games/othello');
+    this.createIsland('Parcela Lógica',      new THREE.Vector3(0, 2.5, -8),  '#60a5fa', '/games/panda4x4');
+    this.createIsland('Parcela de Pigmentos',new THREE.Vector3(11, 1.4, 2),  '#f472b6', '/games/colores');
+    this.createIsland('Torres de Hanoi',     new THREE.Vector3(-2, 1.8, 10), '#38bdf8', '/games/hanoi');
   }
 
   private createIsland(name: string, position: any, portalColor: string, route: PortalRoute): void {

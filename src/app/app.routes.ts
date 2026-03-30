@@ -39,5 +39,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./games/colores/colores.routes').then((m) => m.COLORES_ROUTES)
   },
+  {
+    path: 'games/hanoi',
+    loadChildren: () =>
+      import('./games/hanoi/hanoi.routes').then((m) => m.HANOI_ROUTES)
+  },
   { path: '**', redirectTo: '' }
 ];

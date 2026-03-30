@@ -203,6 +203,12 @@ export class Othello3dComponent implements AfterViewInit, OnDestroy {
     this.tileGroup.clear();
     this.tileMeshes = [];
 
+    // Clear all pieces — their positions were calculated for the old boardSize
+    // and would overlap with pieces placed for the new grid dimensions
+    this.pieceGroup.clear();
+    this.pieceMeshes.clear();
+    this.previousBoard = [];
+
     for (let row = 0; row < this.boardSize; row++) {
       for (let col = 0; col < this.boardSize; col++) {
         const material = (row + col) % 2 === 0 ? this.tileMaterialA : this.tileMaterialB;

@@ -1,0 +1,290 @@
+@use '../../../styles/variables' as *;
+
+:host {
+  display: block;
+  background: $bg;
+  min-height: 100vh;
+}
+
+// ── Wrapper ────────────────────────────────────────────────────
+.hanoi-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 4vw, 2rem) 3rem;
+}
+
+// ── Header ─────────────────────────────────────────────────────
+.hanoi-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+
+  h1 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: $t1;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    color: $t2;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// ── Controls bar ───────────────────────────────────────────────
+.controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  background: $bg-2;
+  border: 1px solid $b1;
+  border-radius: $r-lg;
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.disc-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.selector-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: $t3;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-right: 0.25rem;
+}
+
+.disc-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: $r-sm;
+  border: 1px solid $b2;
+  background: $bg-3;
+  color: $t1;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+
+  &.active,
+  &:hover {
+    background: $brand;
+    color: #fff;
+    border-color: $brand;
+  }
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: $t1;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: $t3;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.stat-sep {
+  width: 1px;
+  height: 28px;
+  background: $b1;
+}
+
+.reset-btn {
+  border: none;
+  background: $t1;
+  color: #fff;
+  border-radius: $r-full;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 150ms ease;
+  white-space: nowrap;
+
+  &:hover { background: $brand; }
+}
+
+// ── Win banner ─────────────────────────────────────────────────
+.win-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 1px solid #86efac;
+  border-radius: $r-lg;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #166534;
+  margin-bottom: 1.25rem;
+}
+
+.perfect-badge {
+  background: #fef08a;
+  color: #713f12;
+  border-radius: $r-full;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+// ── Board ──────────────────────────────────────────────────────
+.hanoi-board {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  background: $bg-2;
+  border: 1px solid $b1;
+  border-radius: $r-lg;
+  padding: 1.5rem 1rem 0.75rem;
+  height: clamp(300px, 50vh, 480px);
+  margin-bottom: 0.75rem;
+}
+
+.peg-zone {
+  flex: 1;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border-radius: $r-md;
+  padding: 0.5rem 0.25rem;
+  transition: background 150ms ease, outline 150ms ease;
+
+  &:hover { background: $bg-3; }
+
+  &.selected {
+    background: rgba(109, 40, 217, 0.07);
+    outline: 2px solid rgba(109, 40, 217, 0.35);
+    outline-offset: -2px;
+  }
+
+  &.has-discs:not(.selected):hover {
+    outline: 2px dashed $b2;
+    outline-offset: -2px;
+  }
+}
+
+.peg-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: $t3;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+// ── Peg visual area ────────────────────────────────────────────
+.peg-area {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.rod {
+  position: absolute;
+  top: 0;
+  bottom: 14px;
+  width: 7px;
+  background: #c8c4bf;
+  border-radius: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.base {
+  width: 78%;
+  height: 10px;
+  background: #c8c4bf;
+  border-radius: 5px;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.discs-stack {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2px;
+  z-index: 3;
+}
+
+.disc {
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 180ms ease, box-shadow 150ms ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+  flex-shrink: 0;
+
+  &.top-disc {
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.6), 0 2px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+// ── Hint ───────────────────────────────────────────────────────
+.hint {
+  text-align: center;
+  font-size: 0.82rem;
+  color: $t3;
+  margin: 0;
+}
+
+.hint--active {
+  color: $brand;
+  font-weight: 600;
+}
+
+// ── Responsive ────────────────────────────────────────────────
+@media (max-width: 600px) {
+  .controls-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .stats-row { width: 100%; }
+  .reset-btn { align-self: flex-end; }
+}

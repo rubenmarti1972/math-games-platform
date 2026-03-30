@@ -1,0 +1,92 @@
+<div class="hanoi-wrapper">
+
+  <!-- Header -->
+  <header class="hanoi-header">
+    <h1>Torres de Hanoi</h1>
+    <p>Mueve todos los discos de la torre <strong>A</strong> a la torre <strong>C</strong>.<br>
+       Solo puedes colocar un disco más pequeño sobre uno más grande.</p>
+  </header>
+
+  <!-- Controls bar -->
+  <div class="controls-bar">
+    <div class="disc-selector">
+      <span class="selector-label">Discos</span>
+      @for (n of discOptions; track n) {
+        <button class="disc-btn"
+                [class.active]="numDiscs() === n"
+                (click)="setDiscs(n)">{{ n }}</button>
+      }
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-value">{{ moves() }}</span>
+        <span class="stat-label">Movimientos</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-value">{{ optimalMoves() }}</span>
+        <span class="stat-label">Óptimo</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-value">{{ formatTime(elapsed()) }}</span>
+        <span class="stat-label">Tiempo</span>
+      </div>
+    </div>
+
+    <button class="reset-btn" (click)="init()">↺ Reiniciar</button>
+  </div>
+
+  <!-- Win banner -->
+  @if (solved()) {
+    <div class="win-banner">
+      🎉 ¡Torres completadas en <strong>{{ moves() }}</strong> movimientos!
+      @if (moves() === optimalMoves()) {
+        <span class="perfect-badge">¡Solución perfecta! ✨</span>
+      }
+    </div>
+  }
+
+  <!-- Board -->
+  <div class="hanoi-board">
+    @for (peg of pegs(); track trackPeg($index); let i = $index) {
+      <div class="peg-zone"
+           [class.selected]="selected() === i"
+           [class.has-discs]="peg.length > 0"
+           (click)="clickPeg(i)">
+
+        <span class="peg-label">{{ pegLabels[i] }}</span>
+
+        <div class="peg-area">
+          <div class="rod"></div>
+
+          <div class="discs-stack">
+            @for (disc of peg; track trackDisc($index, disc)) {
+              <div class="disc"
+                   [style.width.%]="discWidthPct(disc)"
+                   [style.background]="discColor(disc)"
+                   [class.top-disc]="disc === peg[peg.length - 1] && selected() === i">
+              </div>
+            }
+          </div>
+
+          <div class="base"></div>
+        </div>
+
+      </div>
+    }
+  </div>
+
+  <!-- Hint -->
+  @if (!solved()) {
+    <p class="hint">
+      @if (selected() !== null) {
+        <span class="hint--active">Selecciona la torre destino</span>
+      } @else {
+        <span>Haz clic en una torre para tomar el disco superior</span>
+      }
+    </p>
+  }
+
+</div>

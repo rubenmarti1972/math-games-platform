@@ -1,11 +1,11 @@
 export type GameDifficulty = 'easy' | 'medium' | 'hard' | 'multi-level';
 
 export interface GameDefinition {
-  id: 'othello' | 'panda4x4' | 'colores';
+  id: 'othello' | 'panda4x4' | 'colores' | 'hanoi';
   title: string;
   description: string;
   longDescription: string;
-  route: '/games/othello' | '/games/panda4x4' | '/games/colores';
+  route: '/games/othello' | '/games/panda4x4' | '/games/colores' | '/games/hanoi';
   difficulty: GameDifficulty;
   icon: string;
   color: string;
@@ -60,5 +60,19 @@ export const GAMES: readonly GameDefinition[] = [
     gradient: 'linear-gradient(135deg, #1c0a00 0%, #92400E 60%, #D97706 100%)',
     image: 'assets/games/colores.svg',
     tags: ['Fracciones', 'Visual', 'Multinivel']
+  }
+  ,
+  {
+    id: 'hanoi',
+    title: 'Torres de Hanoi',
+    description: 'Lógica recursiva con hasta 10 discos',
+    longDescription: 'Mueve todos los discos de la torre A a la C siguiendo una regla simple: nunca un disco grande sobre uno pequeño. De 3 a 10 discos.',
+    route: '/games/hanoi',
+    difficulty: 'multi-level',
+    icon: '🗼',
+    color: '#0891b2',
+    gradient: 'linear-gradient(135deg, #0c2a33 0%, #0e4f63 60%, #0891b2 100%)',
+    image: 'assets/games/hanoi.svg',
+    tags: ['Lógica', 'Recursividad', 'Un jugador']
   }
 ] as const;

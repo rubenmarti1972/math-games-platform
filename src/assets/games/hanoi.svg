@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" fill="none">
+  <rect width="400" height="280" fill="#F6F5F2"/>
+
+  <!-- Base -->
+  <rect x="20" y="240" width="360" height="14" rx="7" fill="#c8c4bf"/>
+
+  <!-- Peg A (rod) -->
+  <rect x="93" y="60" width="8" height="180" rx="4" fill="#c8c4bf"/>
+  <!-- Peg B (rod) -->
+  <rect x="196" y="90" width="8" height="150" rx="4" fill="#c8c4bf"/>
+  <!-- Peg C (rod) -->
+  <rect x="299" y="120" width="8" height="120" rx="4" fill="#c8c4bf"/>
+
+  <!-- Labels -->
+  <text x="97" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="800" fill="#A09D99" letter-spacing="1">A</text>
+  <text x="200" y="82" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="800" fill="#A09D99" letter-spacing="1">B</text>
+  <text x="303" y="112" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="800" fill="#A09D99" letter-spacing="1">C</text>
+
+  <!-- Peg A discs (5 discs, bottom to top) -->
+  <!-- disc 5 (largest) -->
+  <rect x="31" y="218" width="132" height="18" rx="9" fill="#dc2626"/>
+  <!-- disc 4 -->
+  <rect x="44" y="197" width="106" height="18" rx="9" fill="#ea580c"/>
+  <!-- disc 3 -->
+  <rect x="57" y="176" width="80" height="18" rx="9" fill="#d97706"/>
+  <!-- disc 2 -->
+  <rect x="70" y="155" width="54" height="18" rx="9" fill="#2563eb"/>
+  <!-- disc 1 (smallest) -->
+  <rect x="83" y="134" width="28" height="18" rx="9" fill="#7c3aed"/>
+
+  <!-- Peg B disc (1 disc) -->
+  <rect x="164" y="218" width="72" height="18" rx="9" fill="#65a30d"/>
+
+  <!-- Peg C empty (just the rod shown above) -->
+
+  <!-- Move arrow -->
+  <path d="M 155 170 Q 200 140 245 170" stroke="#6D28D9" stroke-width="2.5" stroke-dasharray="5 3" fill="none" stroke-linecap="round"/>
+  <polygon points="245,170 237,163 237,177" fill="#6D28D9"/>
+</svg>
